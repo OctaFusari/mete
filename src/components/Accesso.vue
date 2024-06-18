@@ -111,7 +111,7 @@ export default {
         return {
             sezione__accesso: 0,
             errore: "",
-            username: "",
+            userName: "",
             email: "",
             password: "",
             showPassword: false,
@@ -128,7 +128,7 @@ export default {
     methods: {
         submit: function () {
             if (this.valid) {
-                DataService.registrazione(this.username, this.email, this.password);
+                DataService.registrazione(this.userName, this.email, this.password);
             }
         },
         submit__accesso: function () {

@@ -89,8 +89,16 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
 };
 
 /* const utentiRef = collection(db, "utenti"); */
+const querySnapshot = await getDocs(collection(db, "utenti"));
 
 export default { 
+  getUserName: function () {
+    return localStorage.getItem("login");
+  },
+  logout: function () {
+    localStorage.removeItem("login");
+  },
+
   searchFlights,
 
   registrazione: function (username:any,email:any, password:any) {
@@ -122,6 +130,12 @@ export default {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        localStorage.setItem("login", user.uid);
+        querySnapshot.forEach((doc) => {
+          if(doc.id == user.uid){
+            console.log(doc.id);
+          }
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
