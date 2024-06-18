@@ -18,6 +18,14 @@
     --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 }
 
+.h1__big {
+    font-size: 3rem;
+}
+
+.h1__large {
+    font-size: 2rem;
+}
+
 
 /* semantic color variables for this project */
 

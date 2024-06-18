@@ -15,6 +15,31 @@
       </div>
 </template>
 
-<script>
 
+<script>
+import DataService from "../dataservice.ts";
+
+export default {
+    data() {
+        return {
+            sezione__accesso: 0,
+            errore:"",
+            username: "",
+            email: "",
+            password: "",
+            showPassword: false,
+            valid: false,
+            rules: [
+                (value) => {
+                    if (value) return true;
+
+                    return "Inserisci questo campo";
+                },
+            ],
+        };
+    },
+    methods: {
+        
+    },
+};
 </script>

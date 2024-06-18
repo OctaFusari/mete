@@ -3,7 +3,7 @@ import axios from 'axios';
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 import {
   collection,
@@ -93,15 +93,14 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
 export default { 
   searchFlights,
 
-  login: function (nome:any,cognome:any,email:any, password:any) {
+  registrazione: function (username:any,email:any, password:any) {
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential:any) => {
       // Signed up 
       const user = userCredential.user;
       return setDoc(doc(db, "utenti", user.uid), {
         idutente: user.uid,
-        nome:nome,
-        cognome:cognome,
+        username:username,
         email:email,
       });
 /*       return addDoc(utentiRef, {
@@ -114,8 +113,21 @@ export default {
     .catch((error:any) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
+      alert("Account già esistente");
     });
+  },
+
+  login:function (email:any, password:any){
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert("Email o password errate");
+      });
   }
 
 

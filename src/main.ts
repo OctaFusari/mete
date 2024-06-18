@@ -11,9 +11,8 @@ import { registerPlugins } from "@/plugins";
 import { createRouter, createWebHistory } from "vue-router";
 
 // Components
-import Home from "./components/Home.vue";
 import Accesso from "./components/Accesso.vue";
-import Pagina__iniziale from "./components/Pagina__iniziale.vue"
+import Pagina__iniziale from "./components/Pagina__iniziale.vue";
 
 // Composables
 import { createApp } from "vue";

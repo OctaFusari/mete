@@ -20,7 +20,23 @@ a,
     font-size: 2rem;
 }
 
+.errors {
+    color: red !important;
+}
+
 .v-text-field {
     background-color: #ffffff00!important;
     color: #FF5400 !important;
+}
+
+.back__arrow {
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.back__arrow * {
+    margin-right: 1vh;
+    color: #FF5400;
+    cursor: pointer;
 }
