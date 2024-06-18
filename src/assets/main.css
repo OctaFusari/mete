@@ -1,0 +1,26 @@
+@import './base.css';
+#app {
+    margin: 0 auto;
+    padding: 2rem;
+    font-weight: normal;
+}
+
+a,
+.green {
+    text-decoration: none;
+    transition: 0.4s;
+    padding: 3px;
+}
+
+.h1__big {
+    font-size: 3rem;
+}
+
+.h1__large {
+    font-size: 2rem;
+}
+
+.v-text-field {
+    background-color: #ffffff00!important;
+    color: #FF5400 !important;
+}

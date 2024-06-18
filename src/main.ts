@@ -5,16 +5,29 @@
  */
 
 // Plugins
-import { registerPlugins } from '@/plugins'
+import App from "./App.vue";
+import "./assets/main.css";
+import { registerPlugins } from "@/plugins";
+import { createRouter, createWebHistory } from "vue-router";
 
 // Components
-import App from './App.vue'
+import Home from "./components/Home.vue";
+import Accesso from "./components/Accesso.vue";
+import Pagina__iniziale from "./components/Pagina__iniziale.vue"
 
 // Composables
-import { createApp } from 'vue'
+import { createApp } from "vue";
 
-const app = createApp(App)
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        { path: "/accesso", component: Accesso, name: "accesso" },
+        { path: "/", component: Pagina__iniziale, name: "Pagina__iniziale" }
+    ],
+  });
 
-registerPlugins(app)
+const app = createApp(App);
 
-app.mount('#app')
+registerPlugins(app);
+app.use(router);
+app.mount("#app");

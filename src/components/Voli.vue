@@ -29,7 +29,8 @@
   </template>
   
   <script>
-  import { searchFlights } from '../dataservice';
+  import Dataservice from '../dataservice.ts';
+  
   
   export default {
     data() {
@@ -43,7 +44,7 @@
     methods: {
       async searchFlights() {
         try {
-          this.flights = await searchFlights(this.origin, this.destination, this.departureDate);
+          this.flights = await Dataservice.searchFlights(this.origin, this.destination, this.departureDate);
         } catch (error) {
           console.error('Error fetching flight data:', error);
           this.flights = [];

@@ -1,5 +1,55 @@
 import axios from 'axios';
 
+// Import the functions you need from the SDKs you need
+
+import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+import {
+  collection,
+  query,
+  where,
+  getFirestore,
+  getDocs,
+  addDoc,
+  doc,
+  deleteDoc,
+  and,
+  writeBatch,
+  setDoc,
+} from "firebase/firestore";
+
+// TODO: Add SDKs for Firebase products that you want to use
+
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+
+// Your web app's Firebase configuration
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyBBLjN5pUazHaVxMd71_jJcEdiNvTmHCnA",
+
+  authDomain: "mete-79363.firebaseapp.com",
+
+  projectId: "mete-79363",
+
+  storageBucket: "mete-79363.appspot.com",
+
+  messagingSenderId: "144672915169",
+
+  appId: "1:144672915169:web:130aae5c1f6d97651081a0"
+
+};
+
+
+// Initialize Firebase
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+
 const clientId = '0YymVenSpYZ0STqcIxP4FbwS4r0qtbGm';  // API KEY (octavian.fusari@unitn.studenti.it)
 const clientSecret = 'DTLTJB7ll2tWGVcC';  // API Secret (octavian.fusari@unitn.studenti.it)
 
@@ -38,4 +88,35 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
   return response.data.data;
 };
 
-export { searchFlights };
+/* const utentiRef = collection(db, "utenti"); */
+
+export default { 
+  searchFlights,
+
+  login: function (nome:any,cognome:any,email:any, password:any) {
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential:any) => {
+      // Signed up 
+      const user = userCredential.user;
+      return setDoc(doc(db, "utenti", user.uid), {
+        idutente: user.uid,
+        nome:nome,
+        cognome:cognome,
+        email:email,
+      });
+/*       return addDoc(utentiRef, {
+        idutente: user.uid,
+        nome:nome,
+        cognome:cognome,
+        email:email,
+      }); */
+    })
+    .catch((error:any) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+  }
+
+
+};

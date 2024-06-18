@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Accesso: typeof import('./src/components/Accesso.vue')['default']
     Aggiungi: typeof import('./src/components/Aggiungi.vue')['default']
     Cerca: typeof import('./src/components/Cerca.vue')['default']
     Esplora: typeof import('./src/components/Esplora.vue')['default']
@@ -14,7 +15,10 @@ declare module 'vue' {
     Home: typeof import('./src/components/Home.vue')['default']
     Introduction: typeof import('./src/components/Introduction.vue')['default']
     Loading: typeof import('./src/components/Loading.vue')['default']
+    Pagina__iniziale: typeof import('./src/components/Pagina__iniziale.vue')['default']
     Profilo: typeof import('./src/components/Profilo.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     Voli: typeof import('./src/components/Voli.vue')['default']
   }
 }
