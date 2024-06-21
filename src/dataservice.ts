@@ -88,7 +88,7 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
   return response.data.data;
 };
 
-/* const utentiRef = collection(db, "utenti"); */
+const postRef = collection(db, "Posts");
 const querySnapshot = await getDocs(collection(db, "utenti"));
 
 export default { 
@@ -98,8 +98,32 @@ export default {
   logout: function () {
     localStorage.removeItem("login");
   },
+  isAuthenticated: function () {
+    return Boolean(localStorage.getItem("login"));
+  },
 
   searchFlights,
+
+  createPost:function(tendenza:any, titolo:any, descrizione:any, immagini:any, likes:any)
+  {
+    return addDoc(postRef, {
+      utente__id: localStorage.getItem("login"),
+      tendenza: tendenza,
+      titolo: titolo,
+      descrizione: descrizione,
+      immagini: immagini,
+      /* likes: likes, */
+    });
+  },
+
+  createComment:function(post__id:any, contenuto:any)
+  {
+    return addDoc(postRef, {
+      utente__id: localStorage.getItem("login"),
+      post__id: post__id,
+      contenuto: contenuto,
+    });
+  },
 
   registrazione: function (username:any,email:any, password:any) {
     createUserWithEmailAndPassword(auth, email, password)
@@ -110,6 +134,9 @@ export default {
         idutente: user.uid,
         username:username,
         email:email,
+        bio: "" ,
+        profile_picture_url  : "",
+       /*  creazione   : Date(), */
       });
 /*       return addDoc(utentiRef, {
         idutente: user.uid,

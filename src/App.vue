@@ -1,5 +1,5 @@
 <script>
-import Voli from './components/Voli.vue';
+import Voli from './components/mete__log/Voli.vue';
 export default {
   name: 'App',
   components: {

@@ -8,17 +8,19 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Accesso: typeof import('./src/components/Accesso.vue')['default']
-    Aggiungi: typeof import('./src/components/Aggiungi.vue')['default']
-    Cerca: typeof import('./src/components/Cerca.vue')['default']
-    Esplora: typeof import('./src/components/Esplora.vue')['default']
+    Aggiungi: typeof import('./src/components/mete__log/Aggiungi.vue')['default']
+    Benvenuto: typeof import('./src/components/Benvenuto.vue')['default']
+    Cerca: typeof import('./src/components/mete__log/Cerca.vue')['default']
+    Esplora: typeof import('./src/components/mete__log/Esplora.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    Home: typeof import('./src/components/Home.vue')['default']
+    Home: typeof import('./src/components/mete__log/Home.vue')['default']
     Introduction: typeof import('./src/components/Introduction.vue')['default']
     Loading: typeof import('./src/components/Loading.vue')['default']
+    Menu: typeof import('./src/components/mete__log/menu.vue')['default']
     Pagina__iniziale: typeof import('./src/components/Pagina__iniziale.vue')['default']
-    Profilo: typeof import('./src/components/Profilo.vue')['default']
+    Profilo: typeof import('./src/components/mete__log/Profilo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Voli: typeof import('./src/components/Voli.vue')['default']
+    Voli: typeof import('./src/components/mete__log/Voli.vue')['default']
   }
 }

@@ -29,7 +29,7 @@
   </template>
   
   <script>
-  import Dataservice from '../dataservice.ts';
+  import Dataservice from '../../dataservice.ts';
   
   
   export default {

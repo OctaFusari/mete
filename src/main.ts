@@ -12,18 +12,33 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // Components
 import Accesso from "./components/Accesso.vue";
-import Pagina__iniziale from "./components/Pagina__iniziale.vue";
+import Home from "./components/mete__log/Home.vue";
+import Benvenuto from "./components/Benvenuto.vue";
+
+import DataService from "./dataservice";
 
 // Composables
 import { createApp } from "vue";
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes: [
-        { path: "/accesso", component: Accesso, name: "accesso" },
-        { path: "/", component: Pagina__iniziale, name: "Pagina__iniziale" }
-    ],
-  });
+  history: createWebHistory(),
+  routes: [
+    { path: "/accesso", component: Accesso, name: "accesso" },
+    { path: "/", component: Benvenuto, name: "benvenuto" },
+    { path: "/", component: Home, name: "home" }
+  ],
+});
+
+router.beforeEach(async (to:any, from:any) => {
+  if (!DataService.isAuthenticated() && to.name !== "accesso") {
+    if(to.name !== "benvenuto"){
+      return { name: "accesso" };
+    }
+  }
+  if (DataService.isAuthenticated() && (to.name === "accesso" || to.name === "benvenuto")) {
+    return { name: "home" };
+  }
+});
 
 const app = createApp(App);
 
