@@ -91,6 +91,9 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
 const postRef = collection(db, "Posts");
 const querySnapshot = await getDocs(collection(db, "utenti"));
 
+let selectedFile: File | null = null;
+let imageUrl: string | null = null;
+
 export default { 
   getUserName: function () {
     return localStorage.getItem("login");
@@ -102,9 +105,41 @@ export default {
     return Boolean(localStorage.getItem("login"));
   },
 
+  onFileSelected:function(event: Event){
+      const inputElement: any = event.target as HTMLInputElement;
+      if (inputElement.files && inputElement.files.length > 0) {
+        selectedFile = inputElement.files[0];
+      }
+      console.log(inputElement.files[0])
+
+      if (inputElement.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          imageUrl = e.target.result;
+        };
+        reader.readAsDataURL(inputElement.files[0]);
+      }
+  },
+
   searchFlights,
 
-  createPost:function(tendenza:any, titolo:any, descrizione:any, immagini:any, likes:any)
+  createPosts:function(titolo:any,luogo:any,descrizione:any,alloggio:any,inizio:any,fine:any,immagini:any)
+  {
+    return addDoc(postRef, {
+      utente__id: localStorage.getItem("login"),
+      titolo: titolo,
+      luogo: luogo,
+      descrizione: descrizione,
+      alloggio: alloggio,
+      /* partecipanti: alloggio, */
+      inizio: inizio,
+      fine: fine,
+      immagini: immagini,
+      likes: "",
+    });
+  },
+
+/*   createMipiace:function(tendenza:any, titolo:any, descrizione:any, immagini:any, likes:any)
   {
     return addDoc(postRef, {
       utente__id: localStorage.getItem("login"),
@@ -112,11 +147,11 @@ export default {
       titolo: titolo,
       descrizione: descrizione,
       immagini: immagini,
-      /* likes: likes, */
+      likes: likes,
     });
-  },
+  }, */
 
-  createComment:function(post__id:any, contenuto:any)
+  createCommenti:function(post__id:any, contenuto:any)
   {
     return addDoc(postRef, {
       utente__id: localStorage.getItem("login"),

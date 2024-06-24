@@ -14,6 +14,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Accesso from "./components/Accesso.vue";
 import Home from "./components/mete__log/Home.vue";
 import Benvenuto from "./components/Benvenuto.vue";
+import Aggiungi from "./components/mete__log/Aggiungi.vue";
 
 import DataService from "./dataservice";
 
@@ -25,7 +26,8 @@ const router = createRouter({
   routes: [
     { path: "/accesso", component: Accesso, name: "accesso" },
     { path: "/", component: Benvenuto, name: "benvenuto" },
-    { path: "/", component: Home, name: "home" }
+    { path: "/", component: Home, name: "home" },
+    { path: "/Aggiungi", component: Aggiungi, name: "aggiungi" }
   ],
 });
 
