@@ -158,7 +158,11 @@ export default {
   position: relative;
   width: 100%;
   list-style: none;
-  transition: 1s;
+  margin: 5vh 0 5vh 0;
+}
+
+.navigation ul li path{
+  transition-duration: .2s;
 }
 
 .navigation ul li:hover path{
@@ -181,6 +185,9 @@ export default {
   height: 60px;
   line-height: 60px;
   text-align: center;
+  display: flex;
+  align-items: center;
+
 }
 
 .navigation ul li a .icon .fa {
