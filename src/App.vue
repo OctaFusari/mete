@@ -72,7 +72,7 @@ export default {
         <div class="navigation">
           <ul>
             <li>
-              <a href="#">
+              <a @click="$router.push({ path: '/' })">
                 <span class="icon"><svg width="35" height="30" viewBox="0 0 35 30" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M14 30V19.4118H21V30H29.75V15.8824H35L17.5 0L0 15.8824H5.25V30H14Z" fill="#1e1e1e48"
@@ -82,7 +82,7 @@ export default {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a @click="$router.push({ path: '/esplora' })">
                 <span class="icon"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -94,7 +94,7 @@ export default {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a @click="$router.push({ path: '/ricerca' })">
                 <span class="icon"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -106,7 +106,7 @@ export default {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a @click="$router.push({ path: '/crea' })">
                 <span class="icon"><svg width="41" height="41" viewBox="0 0 41 41" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                       <path

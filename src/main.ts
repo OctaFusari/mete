@@ -27,7 +27,7 @@ const router = createRouter({
     { path: "/accesso", component: Accesso, name: "accesso" },
     { path: "/", component: Benvenuto, name: "benvenuto" },
     { path: "/", component: Home, name: "home" },
-    { path: "/Aggiungi", component: Aggiungi, name: "aggiungi" }
+    { path: "/crea", component: Aggiungi, name: "crea" }
   ],
 });
 
