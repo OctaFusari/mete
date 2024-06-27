@@ -94,7 +94,7 @@ export default {
               </a>
             </li>
             <li>
-              <a @click="$router.push({ path: '/ricerca' })">
+              <a @click="$router.push({ path: '/cerca' })">
                 <span class="icon"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -106,7 +106,7 @@ export default {
               </a>
             </li>
             <li>
-              <a @click="$router.push({ path: '/crea' })">
+              <a @click="$router.push({ path: '/aggiungi' })">
                 <span class="icon"><svg width="41" height="41" viewBox="0 0 41 41" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                       <path

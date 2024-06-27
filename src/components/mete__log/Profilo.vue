@@ -7,5 +7,8 @@
 </style>
 
 <script>
-    import DataService from "../dataservice.ts";
+    import DataService from "../../dataservice.ts";
+    export default {
+        
+    }
 </script>

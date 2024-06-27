@@ -17,6 +17,7 @@
   </template>
   
   <script>
+      import DataService from "../../dataservice.ts";
   export default {
     data() {
       return {

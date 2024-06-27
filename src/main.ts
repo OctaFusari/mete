@@ -14,7 +14,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import Accesso from "./components/Accesso.vue";
 import Home from "./components/mete__log/Home.vue";
 import Benvenuto from "./components/Benvenuto.vue";
+
 import Aggiungi from "./components/mete__log/Aggiungi.vue";
+import Cerca from "./components/mete__log/Cerca.vue";
+import Esplora from "./components/mete__log/Esplora.vue";
+import Profilo from "./components/mete__log/Profilo.vue";
 
 import DataService from "./dataservice";
 
@@ -27,7 +31,10 @@ const router = createRouter({
     { path: "/accesso", component: Accesso, name: "accesso" },
     { path: "/", component: Benvenuto, name: "benvenuto" },
     { path: "/", component: Home, name: "home" },
-    { path: "/crea", component: Aggiungi, name: "crea" }
+    { path: "/aggiungi", component: Aggiungi, name: "aggiungi" },
+    { path: "/cerca", component: Cerca, name: "cerca" },
+    { path: "/esplora", component: Esplora, name: "esplora" },
+    { path: "/profilo", component: Profilo, name: "profilo" }
   ],
 });
 
