@@ -18,6 +18,7 @@ import {
   writeBatch,
   setDoc,
 } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -120,6 +121,36 @@ export default {
         reader.readAsDataURL(inputElement.files[0]);
       }
   },
+
+  uploadImageAsPromise:function(imageFile:any) {
+    return new Promise(function (resolve, reject) {
+      // Create a root reference
+        const storage = getStorage();
+
+        const mountainImagesRef = ref(storage, 'images/mountains.jpg');
+
+        uploadBytes(mountainImagesRef, imageFile).then((snapshot:any) => {
+          console.log('Uploaded a blob or file!');
+        });
+
+/*         var storageRef = firebase.storage().ref(fullDirectory+"/"+imageFile.name);
+
+        var task = storageRef.put(imageFile);
+
+        task.on('state_changed',
+            function progress(snapshot){
+                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                uploader.value = percentage;
+            },
+            function error(err){
+
+            },
+            function complete(){
+                var downloadURL = task.snapshot.downloadURL;
+            }
+        ); */
+    });
+},
 
   searchFlights,
 

@@ -62,7 +62,8 @@
             <div class="ods__form__buttons">
                 <div class="button__container">
                     <button class="buttonlight">Annulla</button>
-                    <button class="buttonheavy" type="submit" @click="DataService.createPosts(this.titolo, this.luogo, this.alloggio, this.descrizione, this.inizio, this.fine, this.immagini)">Continua</button>
+                    <button class="buttonheavy" type="submit" @click="uploadImage()">Continua</button>
+                    <!-- <button class="buttonheavy" type="submit" @click="DataService.createPosts(this.titolo, this.luogo, this.alloggio, this.descrizione, this.inizio, this.fine, this.immagini)">Continua</button> -->
                 </div>
             </div>
         </div>
@@ -154,6 +155,9 @@ export default {
         postFormCheck: function () {
             DataService.createPosts(this.titolo, this.luogo, this.descrizione, this.alloggio, this.inizio, this.fine, this.immagini);
         },
+        uploadImage: function () {
+            DataService.uploadImageAsPromise(this.image_list[0])
+        },
         previewImmagini: function (event) {
             var input = event.target;
             var immaginiSelezionate = input.files.length;
@@ -170,8 +174,8 @@ export default {
                 }
             }
             /* BUG QUANDO SI CARICA LA FOTO NON SI VEDE FINCHE' NON SCHIACCIA IL BOTTONE */
-            console.log(this.preview_list)
-            console.log(this.image_list)
+            console.log(this.preview_list[0])
+            console.log(this.image_list[0])
 
             return this.preview_list;
         },
