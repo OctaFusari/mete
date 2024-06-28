@@ -1,19 +1,32 @@
 <template>
-    <div>
-      <h1>Cerca destinazione</h1>
+  <div class="Cerca_e_destinazioni">
+    <div class="ced__container__interno">
       <div>
-        <h3>Destinazioni di interesse</h3>
+        <h1>Cerca destinazione</h1>
       </div>
-      <div v-for="destinazione in destinazioni" :key="destinazione">
-        <h5>{{ destinazione }}</h5>
-      </div>
-      <v-combobox
+      <div>
+        <v-combobox
         clearable
-        label="Combobox"
-        v-model="selectedDestinazione"
-        :items="destinazioni"
-      ></v-combobox>
+        label="cerca"
+        :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
+        variant="solo"
+        ></v-combobox>
+      </div>
     </div>
+    
+    <div class="ced__container__interno">
+      <div>
+        <h2>Destinazioni di interesse</h2>
+      </div>
+      
+      <div class="Destinazioni">
+        <div v-for="destinazione in destinazioni" :key="destinazione">
+        <h3>{{ destinazione }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   </template>
   
   <script>
@@ -21,7 +34,7 @@
   export default {
     data() {
       return {
-        destinazioni: ['le mie palle', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming'],
+        destinazioni: ['Roma', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming'],
         selectedDestinazione: null,
       };
     },
@@ -29,16 +42,24 @@
   </script>
   
   <style>
-  h1 {
-    color: #2c3e50;
-    font-family: Arial, sans-serif;
+  .Cerca_e_destinazioni{
+
+    margin: 4vw 4vw 1vw 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+  } 
+  .Destinazioni{
+    border-left: 1px solid var(--vt-c-black-soft);
+    border-bottom-left-radius: 1.5rem;
+    margin-top: 5vh;
+    padding: 0vw 3vw 1vw 3vw;
   }
-  h3 {
-    color: #34495e;
-    font-family: Arial, sans-serif;
+
+  .ced__container__interno{
+    margin: 1vw 4vw 1vw 4vw;
   }
-  h5 {
-    color: #7f8c8d;
-    font-family: Arial, sans-serif;
-  }
+  
+  
   </style>

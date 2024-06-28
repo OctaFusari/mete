@@ -38,6 +38,7 @@
 
   .container__titoli__esplora{
     display: grid;
+    margin-left: 10vw;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: ". .";
