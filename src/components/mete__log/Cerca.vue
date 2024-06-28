@@ -4,7 +4,7 @@
       <div>
         <h1>Cerca destinazione</h1>
       </div>
-      <div>
+      <div class="combobox__modify">
         <v-combobox
         clearable
         label="cerca"
@@ -21,7 +21,7 @@
       
       <div class="Destinazioni">
         <div v-for="destinazione in destinazioni" :key="destinazione">
-        <h3>{{ destinazione }}</h3>
+        <h3 style="margin: 1vw 0 1vw 0;">{{ destinazione }}</h3>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
 
     margin: 4vw 4vw 1vw 4vw;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr .5fr;
     grid-template-rows: 1fr;
     grid-template-areas: ". .";
   } 
@@ -54,7 +54,11 @@
     border-left: 1px solid var(--vt-c-black-soft);
     border-bottom-left-radius: 1.5rem;
     margin-top: 5vh;
-    padding: 0vw 3vw 1vw 3vw;
+    padding: 0vw 3vw 1vw 3vw; 
+  }
+
+  .combobox__modify{
+    max-width: 70%;
   }
 
   .ced__container__interno{
