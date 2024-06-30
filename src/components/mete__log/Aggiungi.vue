@@ -1,5 +1,5 @@
 <template>
-    <div class="post__container">
+    <div class="container__generale__router">
         <div class="post__container__interno">
             <div>
                 <h1>Crea nuova destinazione</h1>
@@ -80,9 +80,6 @@
     border: 5px solid #D9D9D9 !important;
     border-top-left-radius: 20px !important;
     border-top-right-radius: 20px !important;
-}
-.post__container {
-    margin: 2vw 4vw 2vw 4vw;
 }
 
 .post__sezione__uno {
