@@ -18,6 +18,7 @@ declare module 'vue' {
     Loading: typeof import('./src/components/Loading.vue')['default']
     Menu: typeof import('./src/components/mete__log/menu.vue')['default']
     Pagina__iniziale: typeof import('./src/components/Pagina__iniziale.vue')['default']
+    Post: typeof import('./src/components/mete__log/post.vue')['default']
     Profilo: typeof import('./src/components/mete__log/Profilo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

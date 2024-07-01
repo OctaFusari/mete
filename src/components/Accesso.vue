@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div class="template__outside template__outside__registrati" v-if="this.sezione__accesso == 0">
         <div class="template__inside">
             <div @click="$router.push({ path: '/' })"  class="back__arrow">
@@ -66,10 +67,13 @@
             <a class="errors">{{ this.errore }}</a>
         </div>
     </div>
+        
+    </div>
 </template>
-<style>
+<style> 
 .template__outside {
-    margin-top: 16vh;
+    margin-left: -250px;
+    margin-top: 26vh;
     display: grid;
     grid-template-columns: 1fr 1fr .5fr 1fr 1fr;
     grid-template-rows: 1fr;

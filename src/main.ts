@@ -19,6 +19,7 @@ import Aggiungi from "./components/mete__log/Aggiungi.vue";
 import Cerca from "./components/mete__log/Cerca.vue";
 import Esplora from "./components/mete__log/Esplora.vue";
 import Profilo from "./components/mete__log/Profilo.vue";
+import Post from "./components/mete__log/post.vue";
 
 import DataService from "./dataservice";
 
@@ -34,7 +35,8 @@ const router = createRouter({
     { path: "/aggiungi", component: Aggiungi, name: "aggiungi" },
     { path: "/cerca", component: Cerca, name: "cerca" },
     { path: "/esplora", component: Esplora, name: "esplora" },
-    { path: "/profilo", component: Profilo, name: "profilo" }
+    { path: "/profilo", component: Profilo, name: "profilo" },
+    { path: "/post:postId", component: Post, name: "post" }
   ],
 });
 

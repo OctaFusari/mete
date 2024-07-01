@@ -15,6 +15,33 @@
       </div>
 </template>
 
+<style>
+  .home__page{
+    margin-left: -250px;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.home__page section {
+  display: grid;
+  grid-template-columns: 30vw max-content;
+  grid-template-rows: 1fr;
+}
+
+.home__page__inside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2vw 5vw 2vw 5vw
+}
+
+.img__iphone15 {
+  width: 30vh;
+}
+</style>
+
 
 <script>
 import DataService from "../dataservice.ts";

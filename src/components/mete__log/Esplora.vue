@@ -20,7 +20,7 @@
               <v-card title="Modifica filtri">
                 <div>
                   <button v-for="item, index in array__filtri" :key="index" :src="item"
-                    @click="this.debug, item.attivo = !item.attivo"
+                    @click="item.attivo = !item.attivo"
                     :class="{ 'buttonheavy__little': item.attivo == true, 'buttonlight__little': item.attivo == false }">{{
               item.name }}</button>
                 </div>
@@ -34,7 +34,7 @@
         <div style="display: flex;">
           <section v-for="index in 4" :key="index">
             <button v-if="array__filtri[index].attivo == true"
-              @click="this.debug, array__filtri[index].attivo = !array__filtri[index].attivo"
+              @click="array__filtri[index].attivo = !array__filtri[index].attivo"
               :class="{ 'buttonheavy__little': array__filtri[index].attivo == true, 'buttonlight__little': array__filtri[index].attivo == false }">{{
               array__filtri[index].name }}</button>
           </section>

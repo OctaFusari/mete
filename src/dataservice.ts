@@ -226,7 +226,7 @@ export default {
         localStorage.setItem("login", user.uid);
         querySnapshot.forEach((doc) => {
           if(doc.id == user.uid){
-            console.log(doc.id);
+            this.isAuthenticated
           }
         });
       })
