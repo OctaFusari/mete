@@ -4,7 +4,7 @@
 <template>
     <div class="container__generale__router home__container">
         <div class="feed__container">
-            <div class="ods__card ods__card__big" @click="$router.push({ path: '/post:' + postId })">
+            <div class="ods__card ods__card__big" @click="$router.push({ path: '/post:' + 'SVOR7R8AhoLw0tNcmwPl' })">
                 <div class="ods__card__inside">
                   <div class="ods__card__inside__uno">
                     <div>
@@ -62,14 +62,16 @@
 export default {
     data() {
         return {
-            postId: "ciao"
+            postId: " SVOR7R8AhoLw0tNcmwPl "
         };
     }
     }
 </script>
 
 <style>
-
+.navbar__laterale__home{
+  margin-top: 10vh;
+}
 .navbar__laterale__home__inside{
   position: fixed;
 }

@@ -71,11 +71,6 @@
     position: fixed;
 }
 
-/* .post__principale {
-    display: flex;
-    justify-content: center;
-} */
-
 .suggerimenti__account ul li {
     position: relative;
     width: 14vw;
@@ -108,6 +103,7 @@
 <script>
 import DataService from "./../../dataservice.ts";
 import { getStorage, ref, uploadBytes,getDownloadURL  } from 'firebase/storage';
+import { doc, getDoc } from "firebase/firestore";
 
 const storage = getStorage();
 
@@ -115,6 +111,7 @@ export default {
     
     data() {
         return {
+            /* postId: $route.params.postId, */
             sezione__post: 0,
             titolo: "",
             luogo: "",
@@ -133,14 +130,7 @@ export default {
     },
     methods: {
         async Scarica__img(){
-            getDownloadURL(ref(storage, 'images/mountains.jpg'))
-            .then((url) => {
-                this.items.push(url);
-                console.log(url)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
+            DataService.takeDataPost(this.$route.params.postId)
         }
     }
 

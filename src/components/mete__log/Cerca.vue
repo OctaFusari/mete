@@ -64,6 +64,10 @@
     margin-top: 5vh;
 }
 
+.ced__container__interno{
+  margin-top: 10vh;
+}
+
 .rsi1{
   background-image: linear-gradient(to bottom, #ff550000, rgba(201, 201, 201, 0.73)), url("../../assets/immagini__statiche/hotmomento.jpg");
 }
