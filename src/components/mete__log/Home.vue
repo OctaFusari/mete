@@ -71,23 +71,44 @@ export default {
 <style>
 .navbar__laterale__home{
   margin-top: 10vh;
+  grid-area: navbar__laterale__home;
 }
 .navbar__laterale__home__inside{
   position: fixed;
 }
 .feed__container{
+  grid-area: feed__container;
   display: flex;
   justify-content: center;
 }
 .suggerimenti__account{
     margin-top: 8vh;
 }
+
+
   .home__container{
     display: grid;
     grid-template-columns: 1fr .5fr;
     grid-template-rows: 1fr;
-    grid-template-areas: ". .";
+  grid-template-areas: "feed__container navbar__laterale__home";
   }
+
+  @media only screen and (max-width: 1250px){
+    .home__container{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 120px 1fr;
+  grid-template-areas: "navbar__laterale__home""feed__container";
+  }
+  .navbar__laterale__home{
+    margin-top: 0;
+  }
+  .suggerimenti__account{
+    display: none;
+  }
+        }
+
+
   .suggerimenti__account ul li {
   position: relative;
   width: 100%;

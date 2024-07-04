@@ -131,6 +131,15 @@
             .ods__form div {
                 max-width: 100%;
             }
+
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .profilo__upper__sez__uno{
+                width: 50px;
+                height: 50px;
+                border-radius: 50px;
+            }
         }
         
         .ods__form__date {
@@ -166,6 +175,13 @@
         .ods__card__big {
             width: 26vw;
             height: 70vh;
+        }
+
+        @media only screen and (max-width: 1250px){
+        .ods__card__big {
+            width: 36vw;
+            height: 70vh;
+        }  
         }
         
         .ods__card {
