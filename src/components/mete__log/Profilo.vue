@@ -139,6 +139,14 @@
   display: flex;
     align-items: center;
 }
+
+@media only screen and (max-width: 600px) {
+  .profilo__upper__sez__due div:first-of-type{
+  display: block;
+    align-items: center;
+}
+}
+
 .container__post__inside{
     display: flex
 }

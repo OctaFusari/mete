@@ -1,50 +1,52 @@
         @import './base.css';
+
         #app {
             margin: 0 auto;
             font-weight: normal;
         }
-        
+
         .h1__big {
             font-size: 3rem;
         }
-        
+
         .h1__large {
             font-size: 2rem;
         }
-        
+
         .errors {
             color: red !important;
         }
-        
+
         .v-text-field {
-            background-color: #ffffff00!important;
+            background-color: #ffffff00 !important;
             color: #FF5400 !important;
         }
+
         /* ODS */
-        
+
         .container__generale__router {
             margin: 6vh 4vw 6vh 4vw;
         }
-        
+
         .back__arrow {
             display: flex;
             align-items: center;
             align-content: center;
         }
-        
+
         .back__arrow * {
             margin-right: 1vh;
             color: #FF5400;
             cursor: pointer;
         }
-        
+
         .button__container {
             display: flex;
             width: 100%;
             align-items: center;
             justify-content: center;
         }
-        
+
         .buttonlight {
             border-radius: 20px !important;
             border: 3px solid #FF5400 !important;
@@ -54,7 +56,7 @@
             margin: 1vh !important;
             width: 100%;
         }
-        
+
         .buttonheavy {
             border-radius: 20px !important;
             border: 3px solid #FF5400 !important;
@@ -64,7 +66,7 @@
             margin: 1vh !important;
             width: 100%;
         }
-        
+
         .buttonheavy__little {
             border-radius: 20px !important;
             border: 3px solid #FF5400 !important;
@@ -73,7 +75,7 @@
             padding: .5vh 2vh .5vh 2vh !important;
             margin: 1vh !important;
         }
-        
+
         .buttonlight__little {
             border-radius: 20px !important;
             border: 3px solid #FF5400 !important;
@@ -82,7 +84,7 @@
             padding: .5vh 2vh .5vh 2vh !important;
             margin: 1vh !important;
         }
-        
+
         input {
             border-radius: 20px !important;
             border: 3px solid #D9D9D9 !important;
@@ -91,7 +93,7 @@
             padding: 1vh 2vh 1vh 2vh;
             margin: .4vw;
         }
-        
+
         textarea {
             border-radius: 20px !important;
             border: 5px solid #D9D9D9 !important;
@@ -101,33 +103,35 @@
             resize: none !important;
             width: 100%;
         }
-        
+
         .ods__form section {
             margin: 0 1.2vw 1.2vw 1.2vw;
         }
-        
+
         .ods__form__input section input {
             width: 330px;
             margin: 0vh;
         }
-        
+
         .ods__form__date section input {
             width: 150px;
             margin: 0vh;
         }
-        
+
         .ods__form div {
             max-width: 330px;
         }
-        
+
         @media only screen and (max-width: 1000px) {
             .ods__form__input section input {
                 width: 100%;
                 margin: 0vh;
             }
+
             .ods__form {
                 margin-top: 4vh;
             }
+
             .ods__form div {
                 max-width: 100%;
             }
@@ -135,55 +139,58 @@
         }
 
         @media only screen and (max-width: 1024px) {
-            .profilo__upper__sez__uno{
+            .profilo__upper__sez__uno {
                 width: 50px;
                 height: 50px;
                 border-radius: 50px;
             }
         }
-        
+
+
         .ods__form__date {
             display: flex;
         }
-        
+
         .v-carousel__controls {
             background: #00000000 !important;
             color: #FF5400 !important;
         }
-        
+
         .ods__form__buttons {
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .ods__mini__card {
             border-radius: 1.5rem;
             margin: 1vw;
             padding: .5vw 1vw .5vw 1vw;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         }
-        
+
+
         .ods__card__little {
             /*         width: 313px;
         height: 368px; */
             width: 16vw;
             height: 40vh;
         }
-        
+
         .ods__card__big {
             width: 26vw;
             height: 70vh;
         }
 
-        @media only screen and (max-width: 1250px){
-        .ods__card__big {
-            width: 36vw;
-            height: 70vh;
-        }  
+        @media only screen and (max-width: 1250px) {
+            .ods__card__big {
+                width: 36vw;
+                height: 70vh;
+            }
+
         }
-        
+
         .ods__card {
             margin: 2vw;
             background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(201, 201, 201, 0.73)), url("../assets/provagrecia.png");
@@ -192,9 +199,9 @@
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 1fr .5fr;
-            grid-template-areas: ".""ods__card__inside";
+            grid-template-areas: "." "ods__card__inside";
         }
-        
+
         .ods__card__inside {
             grid-area: ods__card__inside;
             margin: 2vw 2vw 2vw 2vw;
@@ -203,14 +210,71 @@
             grid-template-rows: 1fr;
             grid-template-areas: ". .";
         }
-        
+
         .ods__card__inside__due {
             margin-top: 3vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
+
         .v-app-bar.v-toolbar:not(.v-toolbar--flat) {
             box-shadow: none !important;
+        }
+
+        .mx-auto {
+            width: 70vw;
+        }
+
+        @media only screen and (max-width: 800px) {
+
+            .mx-auto {
+                width: 90vw
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+
+            .v-slide-group__prev {
+                display: none !important;    
+            }
+
+            .v-slide-group__next {
+                display: none !important;    
+            }
+
+            .ods__card__little {
+                width: 45vw;
+                height: 35vh;
+            }
+
+            .ods__card__big {
+                width: 85vw;
+                height: 55vh;
+            }
+
+            .ods__card__inside__uno {
+                font-size: x-small;
+                margin-top: 2vh;
+                margin-left: 4vw;
+            }
+
+            .v-slide-group {
+                width: 90vw;
+
+            }
+
+            .destinazioni {
+                display: none;
+
+            }
+
+            .ced__container__interno {
+                display: none;
+
+            }
+
+            .cerca__destinazioni {
+                display: block !important
+            }
         }

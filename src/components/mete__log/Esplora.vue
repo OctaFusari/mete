@@ -7,7 +7,7 @@
         <input type="date">
         <input type="date">
       </div>
-      <div>
+<!--       <div>
         <div style="display: flex;align-items: center;">
           <h2>Filtri</h2>
           <v-dialog max-width="500">
@@ -39,13 +39,13 @@
               array__filtri[index].name }}</button>
           </section>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="carousels__container">
       <div class="carousels__containe__inside">
         <h1 class="h1__large">Grecia</h1>
         <div>
-          <v-sheet class="mx-auto" width="70vw">
+          <v-sheet class="mx-auto">
             <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
               <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle, selectedClass }">
 
@@ -85,7 +85,7 @@
       <div class="carousels__containe__inside">
         <h1 class="h1__large">Italia</h1>
         <div>
-          <v-sheet class="mx-auto" width="70vw">
+          <v-sheet class="mx-auto">
             <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
               <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle, selectedClass }">
 
@@ -125,7 +125,7 @@
       <div class="carousels__containe__inside">
         <h1 class="h1__large">Spagna</h1>
         <div>
-          <v-sheet class="mx-auto" width="70vw">
+          <v-sheet class="mx-auto">
             <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
               <v-slide-group-item v-for="n in 15" :key="n" v-slot="{ isSelected, toggle, selectedClass }">
 
@@ -216,5 +216,9 @@ export default {
   border-radius: 1.5rem;
   padding: 2vw;
   margin: 1vw 0vw 1vw 0vw;
+}
+
+.carousels__containe__inside h1{
+  margin-left: 3vw;
 }
 </style>
