@@ -1,12 +1,12 @@
 <template>
     <div class="container__generale__router home__container">
-        <div class="feed__container"  >
-            <div class="ods__card ods__card__big" @click="$router.push({ path: '/post:' + 'SVOR7R8AhoLw0tNcmwPl' })">
+        <div class="feed__container">
+            <div class="ods__card ods__card__big" v-for="file in files" :key="file.id" @click="$router.push({ path: '/post:' + 'SVOR7R8AhoLw0tNcmwPl' })">
                 <div class="ods__card__inside">
                   <div class="ods__card__inside__uno">
                     <div>
                       <img>
-                      <h3></h3>
+                      <h3>{{ file.descrizione }}</h3>
                     </div>
                     <h1>Corfù, Grecia</h1>
                     <h2>Colori ovunque </h2>
@@ -57,38 +57,39 @@
 <script>
 import { getDocs, collection } from "firebase/firestore";
 import DataService from "../../dataservice";
+import { getStorage, ref, uploadBytes,getDownloadURL  } from 'firebase/storage';
+import {ref as refFire} from 'firebase/storage';
+import { onMounted } from 'vue';
+import { ref as refVue} from 'vue';
 
+export default {
+  setup() {
 
-  export default {
-    setup() {
-      const array__posts : any[] = []
-
+    const files = refVue([]);
+    const storage = getStorage();
     const fetchData = async () => {
-      const querySnapshot = await getDocs(collection(db, 'uploads'));
+      const querySnapshot = await getDocs(collection(DataService.dbEx(), 'Posts'));
       querySnapshot.forEach((doc) => {
+        getDownloadURL(refFire(storage, 'posts/'+doc.data().utente__id+"/"+doc.id
+        ))
+        .then((url) => {
+            console.log(url)
+        })
         files.value.push({ id: doc.id, ...doc.data() });
       });
-    },
-      methods: {
-        TakeData: async function () {
-          const querySnapshot = await getDocs(collection(DataService.dbEx(), "Posts"));
-          querySnapshot.forEach((doc) => {
-              // doc.data() is never undefined for query doc snapshots
-              console.log(doc.id, " => ", doc.data());
-              
-              array__posts.push(doc.data())
+    };
 
-              console.log({ id: doc.id, ...doc.data() });
-            });
-        },
-      },
-      mounted() {
-        this.TakeData()
-      }
-    },
+    onMounted(() => {
+      fetchData();
+    });
 
-  }
+    return {
+      files,
+    };
+  },
+};
 </script>
+  
 
 <style>
 .navbar__laterale__home{
@@ -100,7 +101,7 @@ import DataService from "../../dataservice";
 }
 .feed__container{
   grid-area: feed__container;
-  display: flex;
+  display: block;
   justify-content: center;
 }
 .suggerimenti__account{
