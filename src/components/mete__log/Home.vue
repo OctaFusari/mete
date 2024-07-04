@@ -6,10 +6,9 @@
                   <div class="ods__card__inside__uno">
                     <div>
                       <img>
-                      <h3>{{ file.descrizione }}</h3>
+                      <h3>{{ file.titolo }}</h3>
                     </div>
-                    <h1>Corfù, Grecia</h1>
-                    <h2>Colori ovunque </h2>
+                    <h1>{{ file.luogo }}</h1>
                   </div>
                   <div class="ods__card__inside__due">
                     <div style="text-align: center;">
@@ -70,7 +69,7 @@ export default {
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(DataService.dbEx(), 'Posts'));
       querySnapshot.forEach((doc) => {
-        getDownloadURL(refFire(storage, 'posts/'+doc.data().utente__id+"/"+doc.id
+        getDownloadURL(refFire(storage, "/posts/1g2574H3WIMNz2OLFqHR98neCHJ2/0NCqjTNKJ5X8QsbkTOqU"
         ))
         .then((url) => {
             console.log(url)

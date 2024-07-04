@@ -19,7 +19,7 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getStorage, ref, uploadBytes,getDownloadURL  } from 'firebase/storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -212,20 +212,21 @@ export default {
 
   takeDataPost: async function (route:any){
     var route__dot:string = route;
+    const storage = getStorage();
     var route__nodot:string = route__dot.substring(1);
     const docRef = doc(db, "Posts/" + route__nodot);
 
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-/*           getDownloadURL(ref(storage, 'Posts/'+$route.params.postId))
+          getDownloadURL(ref(storage, '/posts/1g2574H3WIMNz2OLFqHR98neCHJ2/0NCqjTNKJ5X8QsbkTOqU'))
     .then((url) => {
         this.items.push(url);
         console.log(url)
     })
     .catch((error) => {
         console.log(error)
-    }); */
+    });
     console.log("Document data:", docSnap.data());
     } else {
         
