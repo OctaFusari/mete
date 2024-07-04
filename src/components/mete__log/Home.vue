@@ -58,14 +58,26 @@
 </template>
 
 <script>
+import DataService from "./../../dataservice.ts";
 
-export default {
-    data() {
-        return {
-            postId: " SVOR7R8AhoLw0tNcmwPl "
-        };
-    }
-    }
+  export default {
+
+      data() {
+          return {
+            
+          };
+      },
+      methods: {
+        TakeData: function () {
+          DataService.takePosts()
+        },
+      },
+      mounted() {
+        this.TakeData()
+      
+      }
+
+  }
 </script>
 
 <style>

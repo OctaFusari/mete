@@ -228,7 +228,14 @@ export default {
         
     console.log("No such document!");
     }
-  }
+  },
 
+  takePosts: async function (){
+    const querySnapshot = await getDocs(collection(db, "Posts"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+  }
 
 };
