@@ -94,8 +94,14 @@ const querySnapshot = await getDocs(collection(db, "utenti"));
 
 let selectedFile: File | null = null;
 let imageUrl: string | null = null;
+let array__posts:[] = []
 
 export default {
+
+  dbEx: function(){
+    return db
+  },
+
   getUserName: function () {
     return localStorage.getItem("login");
   },
@@ -111,7 +117,6 @@ export default {
     if (inputElement.files && inputElement.files.length > 0) {
       selectedFile = inputElement.files[0];
     }
-    console.log(inputElement.files[0])
 
     if (inputElement.files[0]) {
       const reader = new FileReader();
@@ -148,8 +153,6 @@ export default {
   },
 
   searchFlights,
-
-
 
   createCommenti: function (post__id: any, contenuto: any) {
     return addDoc(postRefCommenti, {
