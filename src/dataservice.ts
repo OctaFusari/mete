@@ -89,7 +89,7 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
 
   return response.data.data;
 };
-const postRefCommenti = collection(db, "Posts");
+const postRefCommenti = collection(db, "Commenti");
 const querySnapshot = await getDocs(collection(db, "utenti"));
 
 let selectedFile: File | null = null;
@@ -155,7 +155,15 @@ export default {
   searchFlights,
 
   createCommenti: function (post__id: any, contenuto: any) {
-    return addDoc(postRefCommenti, {
+/*     return addDoc(postRefCommenti, {
+      utente__id: localStorage.getItem("login"),
+      post__id: post__id,
+      contenuto: contenuto,
+    }); */
+
+    console.log(post__id)
+
+    return setDoc(doc(db, "Commenti"), {
       utente__id: localStorage.getItem("login"),
       post__id: post__id,
       contenuto: contenuto,
@@ -219,7 +227,9 @@ export default {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-          getDownloadURL(ref(storage, '/posts/1g2574H3WIMNz2OLFqHR98neCHJ2/0NCqjTNKJ5X8QsbkTOqU'))
+      const imageRef = ref(storage, 'posts/1g2574H3WIMNz2OLFqHR98neCHJ2/0NCqjTNKJ5X8QsbkTOqU/immagine0');
+          const downloadURL = await getDownloadURL(imageRef);
+          console.log(downloadURL)
     .then((url) => {
         this.items.push(url);
         console.log(url)

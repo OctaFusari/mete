@@ -1,7 +1,7 @@
 <template>
     <div class="container__generale__router home__container">
         <div class="feed__container">
-            <div class="ods__card ods__card__big" v-for="file in files" :key="file.id" @click="$router.push({ path: '/post:' + 'SVOR7R8AhoLw0tNcmwPl' })">
+            <div class="ods__card ods__card__big" v-for="file in files" :key="file.id" @click="$router.push({ path: '/post:' + file.id })" :style="{ backgroundImage: 'url(' + file.img + ')' }">
                 <div class="ods__card__inside">
                   <div class="ods__card__inside__uno">
                     <div>
@@ -20,6 +20,26 @@
                         <div>
                             <a>40</a>
                         </div>
+                    </div>
+                    <div>
+                      <v-bottom-sheet>
+                        <template v-slot:activator="{ props }">
+                          <v-btn v-bind="props" text="Click Me"></v-btn>
+                        </template>
+
+                        <v-card>
+                          <div>
+                            <h2>Commenti</h2>
+                          </div>
+                          <div>
+
+                          </div>
+                          <div>
+                            <input v-model="commentotxt"  placeholder="Aggiungi commento" label="postForm">
+                          <button @click="CreaCommento(file.id)">Posta</button>
+                          </div>
+                        </v-card>
+                      </v-bottom-sheet>
                     </div>
                   </div>
                 </div>
@@ -54,14 +74,40 @@
 </template>
 
 <script>
-import { getDocs, collection } from "firebase/firestore";
 import DataService from "../../dataservice";
 import { getStorage, ref, uploadBytes,getDownloadURL  } from 'firebase/storage';
 import {ref as refFire} from 'firebase/storage';
 import { onMounted } from 'vue';
 import { ref as refVue} from 'vue';
-
+import {
+  collection,
+  query,
+  where,
+  getFirestore,
+  getDocs,
+  addDoc,
+  doc,
+  deleteDoc,
+  and,
+  writeBatch,
+  setDoc,
+  getDoc,
+} from "firebase/firestore";
 export default {
+  data() {
+        return {
+          commentotxt: ""
+        };
+    },
+    methods: {
+      CreaCommento: function(post__id, commento){
+        return setDoc(doc(DataService.dbEx(), "Commenti", localStorage.getItem("login")), {
+      utente__id: localStorage.getItem("login"),
+      post__id: post__id,
+      contenuto: this.commentotxt,
+    });
+      }
+    },
   setup() {
 
     const files = refVue([]);
@@ -69,12 +115,13 @@ export default {
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(DataService.dbEx(), 'Posts'));
       querySnapshot.forEach((doc) => {
-        getDownloadURL(refFire(storage, "/posts/1g2574H3WIMNz2OLFqHR98neCHJ2/0NCqjTNKJ5X8QsbkTOqU"
+        getDownloadURL(refFire(storage, "posts/"+doc.data().utente__id+"/"+doc.id+"/immagine0"
         ))
         .then((url) => {
-            console.log(url)
+          if(url){ 
+            files.value.push({ id: doc.id, img: url, ...doc.data()});
+          }
         })
-        files.value.push({ id: doc.id, ...doc.data() });
       });
     };
 
