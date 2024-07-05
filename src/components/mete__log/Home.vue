@@ -1,7 +1,7 @@
 <template>
     <div class="container__generale__router home__container">
         <div class="feed__container">
-            <div class="ods__card ods__card__big" v-for="file in files" :key="file.id" @click="$router.push({ path: '/post:' + file.id })" :style="{ backgroundImage: 'url(' + file.img + ')' }">
+            <div class="ods__card ods__card__big" v-for="file in files" :key="file.id" @click="$router.push({ path: '/post:' + file.id })" :style="{ backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(201, 201, 201, 0.73)), url(' + file.img + ')' }">
                 <div class="ods__card__inside">
                   <div class="ods__card__inside__uno">
                     <div>
@@ -11,32 +11,42 @@
                     <h1>{{ file.luogo }}</h1>
                   </div>
                   <div class="ods__card__inside__due">
-                    <div style="text-align: center;">
+                    <div style="text-align: center; margin-bottom: 3vh;">
                         <div>
-                            <svg style="cursor:pointer" width="39" height="50" viewBox="0 0 39 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M29.25 10.5263L28.1775 11.9737C27.1538 13.3421 25.7888 13.9474 24.4238 13.9474C21.9375 13.9474 19.5 11.8947 19.5 8.68421V0C19.5 0 0 10.5263 0 28.9474C0 40.5789 8.72625 50 19.5 50C30.2738 50 39 40.5789 39 28.9474C39 21.1579 35.0756 14.1579 29.25 10.5263ZM19.5 44.7368C16.8187 44.7368 14.625 42.4474 14.625 39.6316C14.625 38.2895 15.1125 37.0263 16.0387 36.0526L19.5 32.3684L22.9856 36.0526C23.8875 37.0263 24.375 38.2895 24.375 39.6316C24.375 42.4474 22.1813 44.7368 19.5 44.7368ZM29.1525 40.7895C29.25 39.8421 29.6887 35.8158 26.3981 32.3158L19.5 25L12.6019 32.3158C9.28688 35.8421 9.75 39.8947 9.8475 40.7895C6.80062 37.8947 4.875 33.6579 4.875 28.9474C4.875 20.6316 10.0669 14.0789 14.6981 9.86842C15.2587 15.1053 19.4025 19.2105 24.4238 19.2105C26.325 19.2105 28.1775 18.6053 29.7375 17.4737C32.5163 20.4737 34.125 24.6053 34.125 28.9474C34.125 33.6579 32.1994 37.8947 29.1525 40.7895Z" fill="#FFFFFF"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <a>40</a>
+                          <svg style="cursor: pointer;" width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M21.9375 7.15789L21.1331 8.14211C20.3653 9.07263 19.3416 9.48421 18.3178 9.48421C16.4531 9.48421 14.625 8.08842 14.625 5.90526V0C14.625 0 0 7.15789 0 19.6842C0 27.5937 6.54469 34 14.625 34C22.7053 34 29.25 27.5937 29.25 19.6842C29.25 14.3874 26.3067 9.62737 21.9375 7.15789ZM14.625 30.4211C12.6141 30.4211 10.9688 28.8642 10.9688 26.9495C10.9688 26.0368 11.3344 25.1779 12.0291 24.5158L14.625 22.0105L17.2392 24.5158C17.9156 25.1779 18.2812 26.0368 18.2812 26.9495C18.2812 28.8642 16.6359 30.4211 14.625 30.4211ZM21.8644 27.7368C21.9375 27.0926 22.2666 24.3547 19.7986 21.9747L14.625 17L9.45141 21.9747C6.96516 24.3726 7.3125 27.1284 7.38562 27.7368C5.10047 25.7684 3.65625 22.8874 3.65625 19.6842C3.65625 14.0295 7.55016 9.57368 11.0236 6.71053C11.4441 10.2716 14.5519 13.0632 18.3178 13.0632C19.7438 13.0632 21.1331 12.6516 22.3031 11.8821C24.3872 13.9221 25.5938 16.7316 25.5938 19.6842C25.5938 22.8874 24.1495 25.7684 21.8644 27.7368Z" fill="white"/>
+                          </svg>
                         </div>
                     </div>
-                    <div>
+                    <div style="text-align: center;">
                       <v-bottom-sheet>
-                        <template v-slot:activator="{ props }">
-                          <v-btn v-bind="props" text="Click Me"></v-btn>
+                        <template v-slot:activator="{ props }" style="cursor: pointer;">
+                          <svg @click="TakeCommenti(file.id)" v-bind="props" width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14.625 0C6.56741 0 0 6.06223 0 13.5C0 20.9378 6.56741 27 14.625 27V31.6377L17.126 30.1582C20.7592 28.0072 27.3846 23.363 28.9231 16.3242C29.1337 15.4163 29.25 14.4716 29.25 13.5C29.25 6.06223 22.6826 0 14.625 0ZM14.625 3C20.9259 3 26 7.68377 26 13.5C26 14.2563 25.91 14.9931 25.7429 15.709L25.7397 15.7207L25.7366 15.7295C24.7711 20.1516 21.0789 23.4078 17.875 25.708V23.6982L16.0469 23.9092C15.5578 23.9656 15.0864 24 14.625 24C8.32409 24 3.25 19.3162 3.25 13.5C3.25 7.68377 8.32409 3 14.625 3Z" fill="#FF5400"/>
+                          </svg>
+
                         </template>
 
-                        <v-card>
-                          <div>
-                            <h2>Commenti</h2>
-                          </div>
-                          <div>
-
-                          </div>
-                          <div>
-                            <input v-model="commentotxt"  placeholder="Aggiungi commento" label="postForm">
-                          <button @click="CreaCommento(file.id)">Posta</button>
+                        <v-card >
+                          <div class="commenti__container">
+                            <div>
+                              <h2>Commenti</h2>
+                            </div>
+                            <div class="commenti__container__inside">
+                              <div class="ods__mini__card" v-if="this.arrayCommenti.length != 0" v-for="commento in arrayCommenti" :key="commento.id">
+                                <div>
+                                  <h4 v-if="user == commento.utente__id" @click="DeleteCom(commenti_t, commento.id, commento.post__id)">Elimina</h4>
+                                  <h3>{{ commento.username }}</h3>
+                                </div>
+                                <div >
+                                  <p>{{ commento.contenuto }}</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <input v-model="commentotxt"  placeholder="Aggiungi commento" label="postForm">
+                            <button @click="CreaCommento(file.id)">Posta</button>
+                            </div>
                           </div>
                         </v-card>
                       </v-bottom-sheet>
@@ -93,25 +103,59 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore";
+import dataservice from "../../dataservice";
 export default {
   data() {
         return {
-          commentotxt: ""
+          commentotxt: "",
+          arrayCommenti:[] = [],
+          user: localStorage.getItem("login"),
+          commenti_t:"Commenti",
         };
     },
     methods: {
-      CreaCommento: function(post__id, commento){
-        return setDoc(doc(DataService.dbEx(), "Commenti", localStorage.getItem("login")), {
-      utente__id: localStorage.getItem("login"),
-      post__id: post__id,
-      contenuto: this.commentotxt,
-    });
-      }
+
+       TakeCommenti: async function(post__id){
+        this.arrayCommenti = []
+        const querySnapshot = await getDocs(collection(DataService.dbEx(), "Commenti"));
+        querySnapshot.forEach((doc) => {
+          if(post__id == doc.data().post__id){
+            this.arrayCommenti.push({id:doc.id, ...doc.data()})
+            console.log(post__id, doc.data().post__id)
+            console.log(this.arrayCommenti)
+          }
+        });
     },
+      CreaCommento: async function(post__id){
+
+        const docRefUt = doc(DataService.dbEx(), "utenti", localStorage.getItem("login"));
+      const docSnap = await getDoc(docRefUt);
+      
+      if (docSnap.exists()) {
+        const docRef =  await addDoc(collection(DataService.dbEx(), "Commenti"), {
+          utente__id: localStorage.getItem("login"),
+          username: docSnap.data().username,
+          post__id: post__id,
+          contenuto: this.commentotxt,
+    })
+      this.TakeCommenti(docRef.id)
+      } else {
+      }
+
+      },
+      DeleteCom: function(sezione, id__commento, post__id){
+       DataService.deleteCommenti(sezione, id__commento)
+       this.TakeCommenti(post__id)
+    },
+    },
+
+
+
   setup() {
 
     const files = refVue([]);
     const storage = getStorage();
+
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(DataService.dbEx(), 'Posts'));
       querySnapshot.forEach((doc) => {
@@ -121,7 +165,9 @@ export default {
           if(url){ 
             files.value.push({ id: doc.id, img: url, ...doc.data()});
           }
-        })
+        }).catch((error) => {
+          
+      });
       });
     };
 
@@ -214,5 +260,13 @@ export default {
 
 .suggerimenti__account  ul li a span{
    color: #FF5400;
+}
+
+.commenti__container{
+  padding: 4vh 4vw 4vh 4vw;
+}
+
+.commenti__container__inside{
+  padding: 2vh 2vh 2vh 2vh;
 }
 </style>

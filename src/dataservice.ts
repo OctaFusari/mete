@@ -5,6 +5,7 @@ import axios from 'axios';
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
+import { ref as refVue} from 'vue';
 import {
   collection,
   query,
@@ -18,6 +19,8 @@ import {
   writeBatch,
   setDoc,
   getDoc,
+  updateDoc,
+  deleteField,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes,getDownloadURL  } from 'firebase/storage';
 
@@ -105,6 +108,17 @@ export default {
   getUserName: function () {
     return localStorage.getItem("login");
   },
+  getUserData: async function (user: string) {
+
+      const docRef = doc(db, "utenti", user);
+      const docSnap = await getDoc(docRef);
+      
+      if (docSnap.exists()) {
+        console.log(docSnap.data().username)
+        return docSnap.data().username
+      } else {
+      }
+  },
   logout: function () {
     localStorage.removeItem("login");
   },
@@ -155,18 +169,29 @@ export default {
   searchFlights,
 
   createCommenti: function (post__id: any, contenuto: any) {
-/*     return addDoc(postRefCommenti, {
-      utente__id: localStorage.getItem("login"),
-      post__id: post__id,
-      contenuto: contenuto,
-    }); */
-
-    console.log(post__id)
 
     return setDoc(doc(db, "Commenti"), {
       utente__id: localStorage.getItem("login"),
       post__id: post__id,
       contenuto: contenuto,
+    });
+  },
+
+  getCommenti: async function(){
+    const querySnapshot = await getDocs(collection(db, "Commenti"));
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
+
+    return querySnapshot
+  },
+
+  deleteCommenti: async function(sezione:any, id__commento:any){
+    const cityRef = doc(db, sezione, id__commento);
+    console.log(sezione, id__commento)
+    await updateDoc(cityRef, {
+      post__id: deleteField()
     });
   },
 
@@ -181,14 +206,7 @@ export default {
           email: email,
           bio: "",
           profile_picture_url: "",
-          /*  creazione   : Date(), */
         });
-        /*       return addDoc(utentiRef, {
-                idutente: user.uid,
-                nome:nome,
-                cognome:cognome,
-                email:email,
-              }); */
       })
       .catch((error: any) => {
         const errorCode = error.code;
@@ -219,7 +237,7 @@ export default {
   },
 
   takeDataPost: async function (route:any){
-    var route__dot:string = route;
+/*     var route__dot:string = route;
     const storage = getStorage();
     var route__nodot:string = route__dot.substring(1);
     const docRef = doc(db, "Posts/" + route__nodot);
@@ -230,18 +248,18 @@ export default {
       const imageRef = ref(storage, 'posts/1g2574H3WIMNz2OLFqHR98neCHJ2/0NCqjTNKJ5X8QsbkTOqU/immagine0');
           const downloadURL = await getDownloadURL(imageRef);
           console.log(downloadURL)
-    .then((url) => {
+    .then((url: any) => {
         this.items.push(url);
         console.log(url)
     })
-    .catch((error) => {
+    .catch((error: any) => {
         console.log(error)
     });
     console.log("Document data:", docSnap.data());
     } else {
         
     console.log("No such document!");
-    }
+    } */
   },
 
   takePosts: async function (){
