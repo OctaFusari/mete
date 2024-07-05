@@ -36,8 +36,8 @@ const router = createRouter({
     { path: "/aggiungi", component: Aggiungi, name: "aggiungi" },
     { path: "/cerca", component: Cerca, name: "cerca" },
     { path: "/esplora", component: Esplora, name: "esplora" },
-    { path: "/profilo", component: Profilo, name: "profilo" },
     { path: "/post:postId", component: Post, name: "post" },
+    { path: "/profilo:userId", component: Profilo, name: "profilo" },
     { path: "/test", component: test, name: "test" }
   ],
 });

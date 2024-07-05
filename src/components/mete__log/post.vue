@@ -1,65 +1,66 @@
 <template>
     <div class="post__container container__generale__router">
         <div class="post__principale">
-            <h1>Octavian Fusari</h1>
-            <h1 class="h1__big">Corfù, Grecia</h1>
-            <div v-if="this.items != 0" class="container__image__post">
+            <h2>{{ this.arrayUtente.username }}</h2>
+            <h1 class="h1__big">{{ this.arrayUtente.luogo }}</h1>
+            <div v-if="this.arrayImmagini.length != 0" class="container__image__post">
                 <v-carousel :show-arrows="false">
-                    <v-carousel-item v-for="item, index in items" :key="index" :src="item" cover >
+                    <v-carousel-item v-for="arrayImmagini, index in this.arrayImmagini" :key="index" :src="arrayImmagini" cover>
                     </v-carousel-item>
                 </v-carousel>
             </div>
             <div>
-                <h1>Periodo</h1>
+                <h1>{{this.arrayUtente.titolo}}</h1>
+                <div  class="ods__mini__card">
+                <h2>Periodo</h2>
                 <div style="display: flex;">
-                    <div class="ods__mini__card">
-                        <h2>12 - 7 - 2024</h2>
+                    <div  class="ods__mini__card" v-if="this.arrayUtente.inizio != ''">
+                        <h2>{{this.arrayUtente.inizio}}</h2>
                     </div>
-                    <div class="ods__mini__card">
-                        <h2>18 - 7 - 2024</h2>
+                    <div  class="ods__mini__card" v-if="this.arrayUtente.fine != ''">
+                        <h2>{{this.arrayUtente.fine}}</h2>
                     </div>
                 </div>
+                </div>
             </div>
-            <div>
-                <h1>Descrizione</h1>
-                <p></p>
+            <div  class="ods__mini__card">
+                <h2>Descrizione</h2>
+                <p>{{ this.arrayUtente.descrizione }}</p>
             </div>
-            <div>
-                <h1>Alloggio</h1>
-                <h2></h2>
+            <div  class="ods__mini__card">
+                <h2>Alloggio</h2>
+                <h3>{{ this.arrayUtente.alloggio }}</h3>
             </div>
         </div>
         <div>
-            <div class="navbar__laterale__post__inside">
-                <div>
-                    <h1>Piace a 100</h1>
-                    <svg style="cursor:pointer" width="39" height="50" viewBox="0 0 39 50" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M29.25 10.5263L28.1775 11.9737C27.1538 13.3421 25.7888 13.9474 24.4238 13.9474C21.9375 13.9474 19.5 11.8947 19.5 8.68421V0C19.5 0 0 10.5263 0 28.9474C0 40.5789 8.72625 50 19.5 50C30.2738 50 39 40.5789 39 28.9474C39 21.1579 35.0756 14.1579 29.25 10.5263ZM19.5 44.7368C16.8187 44.7368 14.625 42.4474 14.625 39.6316C14.625 38.2895 15.1125 37.0263 16.0387 36.0526L19.5 32.3684L22.9856 36.0526C23.8875 37.0263 24.375 38.2895 24.375 39.6316C24.375 42.4474 22.1813 44.7368 19.5 44.7368ZM29.1525 40.7895C29.25 39.8421 29.6887 35.8158 26.3981 32.3158L19.5 25L12.6019 32.3158C9.28688 35.8421 9.75 39.8947 9.8475 40.7895C6.80062 37.8947 4.875 33.6579 4.875 28.9474C4.875 20.6316 10.0669 14.0789 14.6981 9.86842C15.2587 15.1053 19.4025 19.2105 24.4238 19.2105C26.325 19.2105 28.1775 18.6053 29.7375 17.4737C32.5163 20.4737 34.125 24.6053 34.125 28.9474C34.125 33.6579 32.1994 37.8947 29.1525 40.7895Z"
-                            fill="#FFFFFF" />
-                    </svg>
+            <div class="navbar__laterale__post__inside ods__mini__card">
+                <div style="display: flex;">
+                    <h2>Piace a 100</h2>
+                    <svg style="margin-left: 4vw; cursor: pointer" width="30" height="34" viewBox="0 0 30 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.9375 7.15789L21.1331 8.14211C20.3653 9.07263 19.3416 9.48421 18.3178 9.48421C16.4531 9.48421 14.625 8.08842 14.625 5.90526V0C14.625 0 0 7.15789 0 19.6842C0 27.5937 6.54469 34 14.625 34C22.7053 34 29.25 27.5937 29.25 19.6842C29.25 14.3874 26.3067 9.62737 21.9375 7.15789ZM14.625 30.4211C12.6141 30.4211 10.9688 28.8642 10.9688 26.9495C10.9688 26.0368 11.3344 25.1779 12.0291 24.5158L14.625 22.0105L17.2392 24.5158C17.9156 25.1779 18.2812 26.0368 18.2812 26.9495C18.2812 28.8642 16.6359 30.4211 14.625 30.4211ZM21.8644 27.7368C21.9375 27.0926 22.2666 24.3547 19.7986 21.9747L14.625 17L9.45141 21.9747C6.96516 24.3726 7.3125 27.1284 7.38562 27.7368C5.10047 25.7684 3.65625 22.8874 3.65625 19.6842C3.65625 14.0295 7.55016 9.57368 11.0236 6.71053C11.4441 10.2716 14.5519 13.0632 18.3178 13.0632C19.7438 13.0632 21.1331 12.6516 22.3031 11.8821C24.3872 13.9221 25.5938 16.7316 25.5938 19.6842C25.5938 22.8874 24.1495 25.7684 21.8644 27.7368Z" fill="var(--color-text)"/>
+                        </svg>
+
                 </div>
                 <div>
                     <div class="suggerimenti__account">
                         <h2>Commenti</h2>
-                        <ul>
-                            <li>
+                        <ul 
+                        v-for="commento in arrayCommenti" :key="commento.id">
+                            <li class="ods__mini__card">
                                 <section style="margin-bottom: 10px">
-                                    <div style="margin-right: 10px"></div>
-                                    <h3>Adrea Carlo Montin</h3>
+                                    <h3>{{ commento.username }}</h3>
+                                <a style="margin: 2px 0px 0 30px" v-if="user == commento.utente__id"
+                                  @click="DeleteCom(commenti_t, commento.id, commento.post__id)">Elimina
+                                </a>
                                 </section>
-                                <p>Bellissimo posto da visitare</p>
-                            </li>
-                            <li>
-                                <section style="margin-bottom: 10px">
-                                    <div style="margin-right: 10px"></div>
-                                    <h3>Andrea Sartori</h3>
-                                </section>
-                                <p>Bella soprattutto la piazza principale e la spiaggia di Cazerta</p>
+                                <p>{{ commento.contenuto }}</p>
                             </li>
                         </ul>
                     </div>
+                        <div>
+                          <input v-model="commentotxt" placeholder="Aggiungi commento" label="postForm">
+                          <button @click="CreaCommento(this.$route.params.postId), TakeCommenti(this.$route.params.postId)">Posta</button>
+                        </div>
                 </div>
             </div>
         </div>
@@ -95,44 +96,131 @@
     grid-template-areas: ". .";
 }
 
-.container__image__post{
+.container__image__post {
     margin: 4vh 2vh 2vh 0
 }
 </style>
 
 <script>
-import DataService from "./../../dataservice.ts";
-import { getStorage, ref, uploadBytes,getDownloadURL  } from 'firebase/storage';
-import { doc, getDoc } from "firebase/firestore";
-
-const storage = getStorage();
-
+import DataService from "../../dataservice";
+import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from 'firebase/storage';
+import { ref as refFire } from 'firebase/storage';
+import { onMounted } from 'vue';
+import { ref as refVue } from 'vue';
+import {
+    collection,
+    query,
+    where,
+    getFirestore,
+    getDocs,
+    addDoc,
+    doc,
+    deleteDoc,
+    and,
+    writeBatch,
+    setDoc,
+    getDoc,
+} from "firebase/firestore";
+import dataservice from "../../dataservice";
 export default {
-    
     data() {
         return {
-            /* postId: $route.params.postId, */
-            sezione__post: 0,
-            titolo: "",
-            luogo: "",
-            descrizione: "",
-            alloggio: "",
-            inizio: "",
-            fine: "",
-            preview: null,
-            image: null,
-            items: [],
+            commentotxt: "",
+            arrayCommenti: [] = [],
+            arrayUtenti: [] = [],
+            arrayImmagini: [] = [],
+            arrayUtente: {},
+            user: localStorage.getItem("login"),
+            commenti_t: "Commenti",
+            inizio: new Date,
+            fine: new Date,
+            filtro__attivo: 0
         };
     },
-
-    mounted(){
-        this.Scarica__img()
-    },
     methods: {
-        async Scarica__img(){
-            DataService.takeDataPost(this.$route.params.postId)
-        }
-    }
 
-}
+        async filtroData() {
+            this.filtro__attivo = 1
+        },
+
+        takeUsers: async function () {
+            const querySnapshot = await getDocs(collection(DataService.dbEx(), "utenti"));
+            querySnapshot.forEach((doc) => {
+                this.arrayUtenti.push({ id: doc.id, ...doc.data() })
+            });
+        },
+
+        TakeCommenti: async function (post__id) {
+            var route__dot = post__id;
+            var route__nodot = route__dot.substring(1);
+            const querySnapshot = await getDocs(collection(DataService.dbEx(), "Commenti"));
+            querySnapshot.forEach((doc) => {
+                if (route__nodot == doc.data().post__id) {
+                    this.arrayCommenti.push({ id: doc.id, ...doc.data() })
+                }
+            });
+            console.log(this.arrayCommenti)
+        },
+        CreaCommento: async function (post__id) {
+            this.arrayCommenti = []
+            var route__dot = post__id;
+            var route__nodot = route__dot.substring(1);
+            const docRefUt = doc(DataService.dbEx(), "utenti", localStorage.getItem("login"));
+            const docSnap = await getDoc(docRefUt);
+
+            if (docSnap.exists()) {
+                const docRef = await addDoc(collection(DataService.dbEx(), "Commenti"), {
+                    utente__id: localStorage.getItem("login"),
+                    username: docSnap.data().username,
+                    post__id: route__nodot,
+                    contenuto: this.commentotxt,
+                })
+                this.TakeCommenti(":"+docRef.id)
+            } else {
+            }
+
+        },
+        DeleteCom: function (sezione, id__commento, post__id) {
+            this.arrayCommenti = []
+            DataService.deleteCommenti(sezione, id__commento)
+            this.TakeCommenti(":"+post__id)
+        },
+    },
+
+    // Lifecycle hooks are called at different stages
+    // of a component's lifecycle.
+    // This function will be called when the component is mounted.
+    mounted() {
+        this.takeUsers()
+        this.TakeCommenti(this.$route.params.postId)
+        DataService.takeDataPost(this.$route.params.postId).then(async response => {
+            
+            const querySnapshot2 = await getDocs(collection(DataService.dbEx(), "utenti"));
+            let user = ""
+            querySnapshot2.forEach((doc) => {
+                if (response.data().utente__id == doc.id) {
+                  user = doc.data().username
+                }
+              });
+            this.arrayUtente = {id:response.id, username: user, ...response.data()}
+            this.arrayUtente = JSON.parse(JSON.stringify(this.arrayUtente));
+            const storage = getStorage();
+            const listRef = ref(storage, 'posts/' + response.data().utente__id + "/" + response.id);
+
+            listAll(listRef)
+                .then((res) => {
+                    res.items.forEach((itemRef) => {
+                        getDownloadURL(ref(storage, itemRef.fullPath))
+                            .then((url) => {
+                                this.arrayImmagini.push(url)
+                            })
+                    });
+                }).catch((error) => {
+                    console.log("errore nel caricamento delle immagini")
+                });
+        })
+    },
+
+    
+};
 </script>

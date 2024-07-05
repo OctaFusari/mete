@@ -237,29 +237,13 @@ export default {
   },
 
   takeDataPost: async function (route:any){
-/*     var route__dot:string = route;
-    const storage = getStorage();
+    var route__dot:string = route;
     var route__nodot:string = route__dot.substring(1);
     const docRef = doc(db, "Posts/" + route__nodot);
 
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      const imageRef = ref(storage, 'posts/1g2574H3WIMNz2OLFqHR98neCHJ2/0NCqjTNKJ5X8QsbkTOqU/immagine0');
-          const downloadURL = await getDownloadURL(imageRef);
-          console.log(downloadURL)
-    .then((url: any) => {
-        this.items.push(url);
-        console.log(url)
-    })
-    .catch((error: any) => {
-        console.log(error)
-    });
-    console.log("Document data:", docSnap.data());
-    } else {
-        
-    console.log("No such document!");
-    } */
+    return docSnap
   },
 
   takePosts: async function (){
