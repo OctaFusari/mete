@@ -17,6 +17,7 @@ import Benvenuto from "./components/Benvenuto.vue";
 
 import Aggiungi from "./components/mete__log/Aggiungi.vue";
 import Cerca from "./components/mete__log/Cerca.vue";
+import Voli from "./components/mete__log/Voli.vue";
 import Esplora from "./components/mete__log/Esplora.vue";
 import Profilo from "./components/mete__log/Profilo.vue";
 import Post from "./components/mete__log/post.vue";
@@ -36,6 +37,7 @@ const router = createRouter({
     { path: "/aggiungi", component: Aggiungi, name: "aggiungi" },
     { path: "/cerca", component: Cerca, name: "cerca" },
     { path: "/esplora", component: Esplora, name: "esplora" },
+    { path: "/voli", component: Voli, name: "voli" },
     { path: "/post:postId", component: Post, name: "post" },
     { path: "/profilo:userId", component: Profilo, name: "profilo" },
     { path: "/test", component: test, name: "test" }
@@ -43,6 +45,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to:any, from:any) => {
+  console.log("cuau")
   if (!DataService.isAuthenticated() && to.name !== "accesso") {
     if(to.name !== "benvenuto"){
       return { name: "accesso" };

@@ -3,6 +3,10 @@
     <div class="feed__container">
 
       <div v-if="this.filtro__attivo == 0">
+        <v-skeleton-loader
+          v-if="files.length == 0"
+          type="list-item-avatar"
+        ></v-skeleton-loader>
         <div v-for="file in files" :key="file.id">
           
 
@@ -18,16 +22,16 @@
                 <h3>{{ file.luogo }}</h3>
               </div>
               <div class="ods__card__inside__due">
-                <div style="text-align: center; margin-bottom: 3vh;">
+<!--                 <div style="text-align: center; margin-bottom: 3vh;">
                   <div>
                     <svg style="cursor: pointer;" width="30" height="34" viewBox="0 0 30 34" fill="none"
-                      xmlns="http://www.w3.org/2000/svg"><!--  -->
+                      xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M21.9375 7.15789L21.1331 8.14211C20.3653 9.07263 19.3416 9.48421 18.3178 9.48421C16.4531 9.48421 14.625 8.08842 14.625 5.90526V0C14.625 0 0 7.15789 0 19.6842C0 27.5937 6.54469 34 14.625 34C22.7053 34 29.25 27.5937 29.25 19.6842C29.25 14.3874 26.3067 9.62737 21.9375 7.15789ZM14.625 30.4211C12.6141 30.4211 10.9688 28.8642 10.9688 26.9495C10.9688 26.0368 11.3344 25.1779 12.0291 24.5158L14.625 22.0105L17.2392 24.5158C17.9156 25.1779 18.2812 26.0368 18.2812 26.9495C18.2812 28.8642 16.6359 30.4211 14.625 30.4211ZM21.8644 27.7368C21.9375 27.0926 22.2666 24.3547 19.7986 21.9747L14.625 17L9.45141 21.9747C6.96516 24.3726 7.3125 27.1284 7.38562 27.7368C5.10047 25.7684 3.65625 22.8874 3.65625 19.6842C3.65625 14.0295 7.55016 9.57368 11.0236 6.71053C11.4441 10.2716 14.5519 13.0632 18.3178 13.0632C19.7438 13.0632 21.1331 12.6516 22.3031 11.8821C24.3872 13.9221 25.5938 16.7316 25.5938 19.6842C25.5938 22.8874 24.1495 25.7684 21.8644 27.7368Z"
                         fill="white" />
                     </svg>
                   </div>
-                </div>
+                </div> -->
                 <div style="text-align: center;">
                   <v-bottom-sheet>
                     <template v-slot:activator="{ props }" style="cursor: pointer;">
@@ -74,6 +78,10 @@
       </div>
 
       <div v-if="this.filtro__attivo == 1">
+        <v-skeleton-loader
+          v-if="files.length == 0"
+          type="list-item-avatar"
+        ></v-skeleton-loader>
         <div v-for="file in files" :key="file.id">
           <div class="ods__card ods__card__big" 
             v-if="(new Date(file.inizio) > new Date(this.inizio) && new Date(file.fine) < new Date(this.fine))"
@@ -87,16 +95,16 @@
                 <h2>{{ file.titolo }}</h2>
               </div>
               <div class="ods__card__inside__due">
-                <div style="text-align: center; margin-bottom: 3vh;">
+<!--                 <div style="text-align: center; margin-bottom: 3vh;">
                   <div>
                     <svg style="cursor: pointer;" width="30" height="34" viewBox="0 0 30 34" fill="none"
-                      xmlns="http://www.w3.org/2000/svg"><!--  -->
+                      xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M21.9375 7.15789L21.1331 8.14211C20.3653 9.07263 19.3416 9.48421 18.3178 9.48421C16.4531 9.48421 14.625 8.08842 14.625 5.90526V0C14.625 0 0 7.15789 0 19.6842C0 27.5937 6.54469 34 14.625 34C22.7053 34 29.25 27.5937 29.25 19.6842C29.25 14.3874 26.3067 9.62737 21.9375 7.15789ZM14.625 30.4211C12.6141 30.4211 10.9688 28.8642 10.9688 26.9495C10.9688 26.0368 11.3344 25.1779 12.0291 24.5158L14.625 22.0105L17.2392 24.5158C17.9156 25.1779 18.2812 26.0368 18.2812 26.9495C18.2812 28.8642 16.6359 30.4211 14.625 30.4211ZM21.8644 27.7368C21.9375 27.0926 22.2666 24.3547 19.7986 21.9747L14.625 17L9.45141 21.9747C6.96516 24.3726 7.3125 27.1284 7.38562 27.7368C5.10047 25.7684 3.65625 22.8874 3.65625 19.6842C3.65625 14.0295 7.55016 9.57368 11.0236 6.71053C11.4441 10.2716 14.5519 13.0632 18.3178 13.0632C19.7438 13.0632 21.1331 12.6516 22.3031 11.8821C24.3872 13.9221 25.5938 16.7316 25.5938 19.6842C25.5938 22.8874 24.1495 25.7684 21.8644 27.7368Z"
                         fill="white" />
                     </svg>
                   </div>
-                </div>
+                </div> -->
                 <div style="text-align: center;">
                   <v-bottom-sheet>
                     <template v-slot:activator="{ props }" style="cursor: pointer;">
@@ -162,7 +170,7 @@
             <li v-for="utente in arrayUtenti" :key="utente.id">
               <a>
                 <div></div>
-                <h3>{{utente.username}}</h3><span>Apri</span>
+                <h3 @click="$router.push({ path: '/profilo:' + utente.id})">{{utente.username}}</h3><span>Apri</span>
               </a>
             </li>
           </ul>
@@ -251,6 +259,8 @@ export default {
       this.TakeCommenti(post__id)
     },
   },
+
+  
 
 // Lifecycle hooks are called at different stages
 // of a component's lifecycle.

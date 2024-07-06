@@ -62,7 +62,7 @@
                 <v-text-field v-model="password" :rules="rules" label="Password"
                     :type="showPassword ? 'text' : 'password'" @click:append="showPassword = !showPassword"
                     :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"></v-text-field>
-                <v-btn class="mt-2" type="submit__accesso" block>Accedi</v-btn>
+                <v-btn class="mt-2" type="submit__accesso" block >Accedi</v-btn>
             </v-form>
             <a class="errors">{{ this.errore }}</a>
         </div>
@@ -138,6 +138,7 @@ export default {
         submit__accesso: function () {
             if (this.valid) {
                 DataService.login(this.email, this.password);
+                
             }
         }
 

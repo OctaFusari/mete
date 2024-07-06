@@ -72,15 +72,46 @@ const authenticate = async () => {
   accessToken = response.data.access_token;
 };
 
+ const getCityCode = async (cityName:any) => {
+  try {
+  let cityTradotto = ""
+  const tranApi = 'https://libretranslate.com/translate';
+      
+        let responseTran = await axios.post(tranApi, {
+          q: cityName,
+          source: 'auto',
+          target: 'en',
+          format: 'text'
+        });
+        cityTradotto = responseTran.data.translatedText;
+        console.log(responseTran.data.translatedText)
+
+  const endpoint = `https://test.api.amadeus.com/v1/reference-data/locations?subType=CITY&keyword=${cityTradotto}`;
+
+
+    const response = await axios.get(endpoint, {
+      headers: { 'Authorization': `Bearer ${accessToken}` }
+    });
+    return response.data.data[0].iataCode;
+  } catch (error) {
+    console.error('Error fetching city code:', error);
+    return null;
+  }
+}
+
 const searchFlights = async (origin: any, destination: any, departureDate: any) => {
   if (!accessToken) {
     await authenticate();
   }
+    const fromCode = await getCityCode(origin);
+    const toCode = await getCityCode(destination);
+    
+    
 
   const response = await axios.get('https://test.api.amadeus.com/v2/shopping/flight-offers', {
     params: {
-      originLocationCode: origin,
-      destinationLocationCode: destination,
+      originLocationCode: fromCode,
+      destinationLocationCode: toCode,
       departureDate,
       adults: 1,
       max: 5,
@@ -89,6 +120,8 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
       Authorization: `Bearer ${accessToken}`,
     },
   });
+
+  console.log(response.data.data)
 
   return response.data.data;
 };
@@ -221,13 +254,8 @@ export default {
         // Signed in 
         const user = userCredential.user;
         localStorage.setItem("login", user.uid);
-        querySnapshot.forEach((doc) => {
-          console.log(doc.id)
-          if (doc.id == user.uid) {
-            console.log(doc.id == user.uid)
-            this.isAuthenticated
-          }
-        });
+        this.isAuthenticated    
+        router.push("/");
       })
       .catch((error) => {
         const errorCode = error.code;

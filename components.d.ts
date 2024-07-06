@@ -13,6 +13,8 @@ declare module 'vue' {
     Cerca: typeof import('./src/components/mete__log/Cerca.vue')['default']
     Esplora: typeof import('./src/components/mete__log/Esplora.vue')['default']
     Home: typeof import('./src/components/mete__log/Home.vue')['default']
+    ModifyPost: typeof import('./src/components/mete__log/modifyPost.vue')['default']
+    ModifyProfilo: typeof import('./src/components/mete__log/modifyProfilo.vue')['default']
     Post: typeof import('./src/components/mete__log/post.vue')['default']
     Profilo: typeof import('./src/components/mete__log/Profilo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

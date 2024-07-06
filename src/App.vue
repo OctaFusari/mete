@@ -13,6 +13,7 @@ export default {
       loading: 0,
       logged: false,
       section__app:0,
+      user: localStorage.getItem("login")
     }
   },
   watch: {
@@ -82,7 +83,7 @@ export default {
                   <span class="title">Home</span>
                 </a>
               </li>
-              <li>
+<!--               <li>
                 <a @click="$router.push({ path: '/esplora' })">
                   <span class="icon"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
@@ -93,7 +94,7 @@ export default {
                   </span>
                   <span class="title">Esplora</span>
                 </a>
-              </li>
+              </li> -->
               <li>
                 <a @click="$router.push({ path: '/cerca' })">
                   <span class="icon"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"
@@ -118,7 +119,7 @@ export default {
                 </a>
               </li>
               <li>
-                <a @click="$router.push({ path: '/profilo' })">
+                <a @click="$router.push({ path: '/profilo:' + this.user})">
                   <span class="icon">
                     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
                       xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -153,7 +154,7 @@ export default {
         <v-spacer></v-spacer>
 
         <v-btn>
-          <svg @click="$router.push({ path: '/profilo' })" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <svg @click="$router.push({ path: '/profilo:'+ this.user})" width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="27" height="27" fill="url(#pattern0_268_439)"/>
 <defs>
 <pattern id="pattern0_268_439" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -174,7 +175,7 @@ export default {
                 </svg></span>
               <span class="title">Home</span>
           </div>
-          <div @click="$router.push({ path: '/esplora' })">
+<!--           <div @click="$router.push({ path: '/esplora' })">
               <span class="icon"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -183,7 +184,7 @@ export default {
                 </svg>
               </span>
               <span class="title">Esplora</span>
-          </div>
+          </div> -->
           <div @click="$router.push({ path: '/cerca' })">
               <span class="icon"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
