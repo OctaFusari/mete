@@ -15,6 +15,7 @@
                   <h3>{{ file.username }}</h3>
                 </div>
                 <h2>{{ file.titolo }}</h2>
+                <h3>{{ file.luogo }}</h3>
               </div>
               <div class="ods__card__inside__due">
                 <div style="text-align: center; margin-bottom: 3vh;">

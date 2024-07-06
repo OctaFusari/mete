@@ -5,14 +5,18 @@
         <h1>Cerca destinazione</h1>
       </div>
       <div class="combobox__modify">
-        <v-combobox
-        clearable
-        label="cerca"
-        :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
-        variant="solo"
-        ></v-combobox>
+        <div>
+          <input type="text" v-model="query" @input="fetchPlacePredictions" placeholder="Enter a destination" />
+            <div v-if="predictions.length != 0" class="ods__mini__card">
+              <div class="destination__for" v-for="prediction in predictions" :key="prediction.formatted"><h3>{{ prediction.formatted }}</h3></div>
+            </div>
+          
+        </div>
       </div>
-      <div class="ricerca__suggerimenti">
+      <div>
+        
+      </div>
+<!--       <div class="ricerca__suggerimenti">
         <div class="rsi1">
           <h3>Scopri le destinazioni hot del momento</h3>
         </div>
@@ -25,7 +29,7 @@
         <div class="rsi4">
           <h3>Viaggi insieme al tuo gruppo di amici</h3>
         </div>
-      </div>
+      </div> -->
     </div>
     
     <div class="ced__container__interno">
@@ -47,15 +51,52 @@
       import DataService from "../../dataservice.ts";
   export default {
     data() {
-      return {
+    return {
+      query: '',
+      predictions: [],
         destinazioni: ['Roma', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming'],
         selectedDestinazione: null,
       };
     },
-  };
+  methods: {
+    async fetchPlacePredictions() {
+      if (this.query.length > 2) {
+        const apiKey = 'c1602b8f21be428f83fdd2855f31ff2a';
+        const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(this.query)}&key=${apiKey}&limit=5`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (data.status.code === 200) {
+            this.predictions = data.results;
+          } else {
+            console.error('Error fetching place predictions:', data.status.message);
+            this.predictions = [];
+          }
+        } catch (error) {
+          console.error('Error fetching place predictions:', error);
+          this.predictions = [];
+        }
+      } else {
+        this.predictions = [];
+      }
+      
+      console.log(this.predictions)
+    }
+  }
+};
   </script>
   
   <style>
+
+  .destination__for{
+    border-bottom: 1px solid var(--vt-c-text-dark-2); 
+    border-radius: 1.5rem; 
+    padding: 3vh;
+    cursor: pointer;
+    background-color: 1px solid var(--vt-c-white); 
+  }
 
 .ricerca__suggerimenti{
     display: flex;
