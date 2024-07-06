@@ -255,7 +255,7 @@ export default {
         const user = userCredential.user;
         localStorage.setItem("login", user.uid);
         this.isAuthenticated    
-        router.push("/");
+        /* router.push("/"); */
       })
       .catch((error) => {
         const errorCode = error.code;
