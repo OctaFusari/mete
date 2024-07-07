@@ -5,30 +5,21 @@
         <h1>Cerca destinazione</h1>
       </div>
       <div class="combobox__modify">
-        <div>
-          <input type="text" v-model="query" @input="fetchPlacePredictions" placeholder="Enter a destination" />
-          <div v-if="predictions.length != 0" class="ods__mini__card">
+        <input type="text" v-model="query" @input="fetchPlacePredictions" placeholder="Enter a destination" />
+        <div v-if="predictions.length > 0" class="ods__mini__card" style="position: absolute; z-index: 99; background-color: white;">
+          <div v-if="predictions.length != 0">
             <div class="destination__for" v-for="prediction in predictions" :key="prediction.formatted">
               <h3 @click="takePosts(prediction.formatted)">{{ prediction.formatted }}</h3>
             </div>
           </div>
         </div>
-        <div class="navbar__laterale__home__inside__buttons">
-          <section>
-            <input type="date" v-model="inizio" @input="filtroData" :rules="rules" placeholder="Inizio"
-              label="postForm">
-          </section>
-          <section>
-            <input type="date" v-model="fine" @input="filtroData" :rules="rules" placeholder="Fine" label="postForm">
-          </section>
-        </div>
       </div>
       <div>
-        <div class="ods__mini__card">
+        <div>
           <div>
-            <h1>{{this.destinationQuery}}</h1>
+            <h1>{{ this.destinationQuery }}</h1>
           </div>
-          
+
           <v-sheet class="mx-auto">
             <v-slide-group v-model="model" class="pa-4" selected-class="bg-success" show-arrows>
               <v-slide-group-item v-for="file in arrayPosts" :key="file.id"
@@ -48,7 +39,7 @@
                       <h43>{{ file.luogo }}</h43>
                     </div>
                     <div class="ods__card__inside__due">
-      <!--                 <div style="text-align: center; margin-bottom: 3vh;">
+                      <!--                 <div style="text-align: center; margin-bottom: 3vh;">
                         <div>
                           <svg style="cursor: pointer;" width="30" height="34" viewBox="0 0 30 34" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -154,6 +145,7 @@ export default {
       commentotxt: "",
       arrayCommenti: [] = [],
       arrayPosts: [] = [],
+      arrayPosts__check: [] = [],
       arrayUtenti: [] = [],
       user: localStorage.getItem("login"),
       commenti_t: "Commenti",
@@ -245,27 +237,30 @@ export default {
 
             if (data.status.code === 200) {
               dataAPI = data.results;
-              for(let i = 0; i < dataAPI.length; i++){
-              if (dataAPI[i].formatted == destinazione) {
-                getDownloadURL(refFire(storage, "posts/" + doccolo.data().utente__id + "/" + doccolo.id + "/immagine0"
-                ))
-                  .then((url) => {
-                    if (url) {
-                      let usernameUser = ""
-                      querySnapshot2.forEach((doc) => {
-                        if (doccolo.data().utente__id == doc.id) {
-                          usernameUser = doc.data().username
+              for (let i = 0; i < dataAPI.length; i++) {
+                if (dataAPI[i].formatted == destinazione) {
+                  getDownloadURL(refFire(storage, "posts/" + doccolo.data().utente__id + "/" + doccolo.id + "/immagine0"
+                  ))
+                    .then((url) => {
+                      if (url) {
+                        let usernameUser = ""
+                        querySnapshot2.forEach((doc) => {
+                          if (doccolo.data().utente__id == doc.id) {
+                            usernameUser = doc.data().username
+                          }
+                        })
+                        if (this.arrayPosts__check.includes(doccolo.id) == false) {
+                          this.arrayPosts__check.push(doccolo.id)
+                          this.arrayPosts.push({ id: doccolo.id, username: usernameUser, img: url, ...doccolo.data() });
+                          this.destinationQuery = destinazione
                         }
-                      })
-                        
-                      this.arrayPosts.push({ id: doccolo.id, username: usernameUser, img: url, ...doccolo.data() });
-                      this.destinationQuery = destinazione
-                    }
-                  }).catch((error) => {
+                      }
+                    }).catch((error) => {
 
-                  });
-              }
-                
+                    });
+                  this.predictions = []
+                }
+
               }
             } else {
               dataAPI = [];
@@ -362,10 +357,11 @@ export default {
   padding: 0vw 3vw 1vw 3vw;
 }
 
+.combobox__modify input {
+  width: 100%;
+}
+
 .combobox__modify {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: ". .";
+  margin-bottom: 6vh;
 }
 </style>

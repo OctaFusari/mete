@@ -1,7 +1,7 @@
 <template>
     <div class="post__container__container__generale__router">
         <div class="post__principale">
-            <h2>{{ this.arrayUtente.username }}</h2>
+            <h2  @click="$router.push({ path: '/profilo:' + this.arrayUtente.id})">{{ this.arrayUtente.username }}</h2>
             <h1 class="h1__big">{{ this.arrayUtente.luogo }}</h1>
             <div  v-if="this.arrayImmagini.length != 0" class="container__image__post">
                 <v-carousel :show-arrows="false">

@@ -1,7 +1,9 @@
 <template>
   <div class="container__generale__router ">
     <div>
-        <div class="ods__mini__card">
+        <h1>Modifica profilo {{ this.arrayUtenti.username }}</h1>
+        <h3>{{this.arrayUtenti.email}}</h3>
+        <div class="ods__mini__card" style="margin: 6vh 0 6vh 0;">
             <div>
                 <h2>Upload Profile Image</h2>
                 <input type="file" @change="onFileChange" />

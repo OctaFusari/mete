@@ -7,7 +7,7 @@
         </div>
         <div class="profilo__upper__sez__due">
           <div v-if="this.arrayUtenti != {}">
-            <h1>{{ this.arrayUtenti.username }}</h1><span style="margin-left: 3vw;color: #FF5400" @click="$router.push({ name: 'modificaProfilo'})">Modifica profilo</span>
+            <h1>{{ this.arrayUtenti.username }}</h1><span style="margin-left: 3vw;color: #FF5400" v-if="user == (':'+user__local)" @click="$router.push({ name: 'modificaProfilo'})">Modifica profilo</span>
             
           </div>
           <div>
@@ -206,6 +206,13 @@
   align-items: center;
 }
 
+.container__post__inside {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: ". . .";
+}
+
 @media only screen and (max-width: 600px) {
   .profilo__upper__sez__due div:first-of-type {
     display: block;
@@ -213,10 +220,13 @@
   }
 }
 
-.container__post__inside {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
+@media only screen and (max-width: 1250px){
+  .container__post__inside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". .";
+}
 }
 </style>
 
@@ -249,6 +259,7 @@ export default {
       arrayUtenti: {} = {},
       arrayPosts: [] = [],
       user: this.$route.params.userId,
+      user__local: localStorage.getItem("login"),
       commenti_t: "Commenti",
       inizio: new Date,
       fine: new Date,
