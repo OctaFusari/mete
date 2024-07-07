@@ -16,6 +16,10 @@
 </template>
 
 <style>
+
+*{
+  text-decoration: none;
+}
   .home__page{
     margin-left: -250px;
   height: 90vh;
@@ -40,6 +44,31 @@
 .img__iphone15 {
   width: 30vh;
 }
+
+@media only screen and (max-width: 1200px){
+  .home__page {
+  margin-left: 0;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+}
+
+@media only screen and (max-width: 800px){
+  .home__page__inside h1{
+    font-size: 1rem !important;
+  }
+  .img__iphone15 {
+  width: 17vh;
+  margin-right: -40px
+}
+
+.home__page__inside {
+  margin: 0vw
+}
+}
+
 </style>
 
 

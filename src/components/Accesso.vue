@@ -105,6 +105,28 @@
     position: relative;
     width: 100%;
 }
+
+@media screen and (max-width: 1200px){
+    .template__outside {
+    
+    margin-left: -180px;
+    margin-right: 80px;
+    margin-top: 26vh;
+    margin-bottom: 26vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "template__inside1""template__inside2";
+}
+}
+
+@media screen and (max-width: 800px){
+    .template__outside {
+        margin-top: 10vh;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+}
 </style>
 
 <script>

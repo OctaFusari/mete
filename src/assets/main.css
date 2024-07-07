@@ -206,13 +206,23 @@ textarea {
     width: 70vw;
 }
 
-@media only screen and (max-width: 800px) {
-    .mx-auto {
-        width: 90vw
+@media only screen and (max-width: 1400px) {
+    .ods__card__little {
+        width: 30vw;
+        height: 35vh;
+    }
+    .container__generale__router {
+        margin: 6vh 2vw 6vh 2vw;
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
+    .container__generale__router {
+        margin: 6vh 1vw 6vh 1vw;
+    }
+    .mx-auto {
+        width: 90vw
+    }
     .rsi1 {
         width: 40vw !important;
         height: 50vw !important;
