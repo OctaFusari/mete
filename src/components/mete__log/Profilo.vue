@@ -2,7 +2,7 @@
   <div class="container__generale__router profilo__container">
     <div>
       <div class="profilo__upper">
-        <div class="profilo__upper__sez__uno">
+        <div class="profilo__upper__sez__uno" :style="{ backgroundImage: 'url('+this.arrayUtenti.profile_picture_url+')'}">
 
         </div>
         <div class="profilo__upper__sez__due">
@@ -195,7 +195,8 @@
 }
 
 .profilo__upper__sez__uno {
-  background-color: var(--color-text);
+  background-size: cover;
+  border: 1px solid var(--color-text);
   width: 100px;
   height: 100px;
   border-radius: 100px;
