@@ -1,5 +1,5 @@
 <template>
-    <div class="post__container container__generale__router">
+    <div class="post__container__container__generale__router">
         <div class="post__principale">
             <h2>{{ this.arrayUtente.username }}</h2>
             <h1 class="h1__big">{{ this.arrayUtente.luogo }}</h1>
@@ -72,10 +72,43 @@
 
 <style>
 
+@media only screen and (max-width: 800px) {
+
+    .post__container__container__generale__router {
+        margin-left: 3vw;
+        display: grid !important;
+        grid-template-columns: 1fr !important; 
+        grid-template-rows: 6.5fr 1fr !important;
+        grid-template-areas: "." "." !important;
+    }
+
+    .navbar__laterale__post__inside {
+    left: 0;
+    bottom: 0;
+    width: 90vw;
+    background-color: #ffffff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    width: 100%;
+    padding: 2vh 3vh 2vh 2vh
+    }
+}
+
+
+.post__container__container__generale__router {
+        margin-left: 3vw;
+        display: grid !important;
+        grid-template-columns:  1.7fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". .";
+    }
+
 .v-img__img {
     border-radius: 1.5rem
 }
 .navbar__laterale__post__inside {
+    margin-top: 11dvw;
     position: fixed;
 }
 
