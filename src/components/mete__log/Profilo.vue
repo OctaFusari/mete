@@ -297,6 +297,8 @@ export default {
       querySnapshot.forEach((doc) => {
         var route__dot = this.$route.params.userId;
         var route__nodot = route__dot.substring(1);
+        console.log(doc.id)
+        console.log(route__nodot)
         if(doc.id == route__nodot){
           this.arrayUtenti = { id: doc.id, ...doc.data() }
         }
