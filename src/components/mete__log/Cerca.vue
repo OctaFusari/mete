@@ -245,8 +245,8 @@ export default {
 
             if (data.status.code === 200) {
               dataAPI = data.results;
-              
-              if (dataAPI[0].formatted == destinazione) {
+              for(let i = 0; i < dataAPI.length; i++){
+              if (dataAPI[i].formatted == destinazione) {
                 getDownloadURL(refFire(storage, "posts/" + doccolo.data().utente__id + "/" + doccolo.id + "/immagine0"
                 ))
                   .then((url) => {
@@ -264,6 +264,8 @@ export default {
                   }).catch((error) => {
 
                   });
+              }
+                
               }
             } else {
               dataAPI = [];
