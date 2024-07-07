@@ -124,7 +124,7 @@ export default {
                 (value) => {
                     if (value) return true;
 
-                    return "Devi sinserire questi campi";
+                    return "Devi inserire questi campi";
                 },
             ],
         };

@@ -196,7 +196,6 @@ export default {
           this.arrayCommenti.push({ id: doc.id, ...doc.data() })
         }
       });
-      console.log(post__id)
     },
     CreaCommento: async function (post__id) {
 

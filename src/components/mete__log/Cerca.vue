@@ -205,7 +205,6 @@ export default {
           this.arrayCommenti.push({ id: doc.id, ...doc.data() })
         }
       });
-      console.log(post__id)
     },
     CreaCommento: async function (post__id) {
 
@@ -246,6 +245,7 @@ export default {
 
             if (data.status.code === 200) {
               dataAPI = data.results;
+              
               if (dataAPI[0].formatted == destinazione) {
                 getDownloadURL(refFire(storage, "posts/" + doccolo.data().utente__id + "/" + doccolo.id + "/immagine0"
                 ))

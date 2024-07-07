@@ -22,6 +22,7 @@ import Esplora from "./components/mete__log/Esplora.vue";
 import Profilo from "./components/mete__log/Profilo.vue";
 import Post from "./components/mete__log/post.vue";
 import test from "./components/mete__log/test.vue";
+import modificaProfilo from "./components/mete__log/modifyProfilo.vue";
 
 import DataService from "./dataservice";
 
@@ -40,7 +41,8 @@ const router = createRouter({
     { path: "/voli", component: Voli, name: "voli" },
     { path: "/post:postId", component: Post, name: "post" },
     { path: "/profilo:userId", component: Profilo, name: "profilo" },
-    { path: "/test", component: test, name: "test" }
+    { path: "/test", component: test, name: "test" },
+    { path: "/profilo:userId/modifica", component: modificaProfilo, name: "modificaProfilo" }
   ],
 });
 
