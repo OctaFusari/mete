@@ -5,24 +5,17 @@ import axios from 'axios';
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
-import { ref as refVue} from 'vue';
 import {
   collection,
-  query,
-  where,
   getFirestore,
   getDocs,
-  addDoc,
   doc,
-  deleteDoc,
-  and,
-  writeBatch,
   setDoc,
   getDoc,
   updateDoc,
   deleteField,
 } from "firebase/firestore";
-import { getStorage, ref, uploadBytes,getDownloadURL  } from 'firebase/storage';
+import { getStorage, ref, uploadBytes  } from 'firebase/storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -125,13 +118,9 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
 
   return response.data.data;
 };
-const postRefCommenti = collection(db, "Commenti");
-const querySnapshot = await getDocs(collection(db, "utenti"));
 
 let selectedFile: File | null = null;
 let imageUrl: string | null = null;
-let array__posts:[] = []
-
 export default {
 
   dbEx: function(){
@@ -242,8 +231,6 @@ export default {
         });
       })
       .catch((error: any) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         alert("Account già esistente");
       });
   },
@@ -258,8 +245,6 @@ export default {
         /* router.push("/"); */
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         alert("Email o password errate");
       });
   },

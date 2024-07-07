@@ -45,7 +45,6 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to:any, from:any) => {
-  console.log("cuau")
   if (!DataService.isAuthenticated() && to.name !== "accesso") {
     if(to.name !== "benvenuto"){
       return { name: "accesso" };
