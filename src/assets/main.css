@@ -176,6 +176,7 @@ textarea {
 }
 
 .ods__card {
+    cursor: pointer;
     margin: 2vw;
     background-size: cover;
     border-radius: 1rem;

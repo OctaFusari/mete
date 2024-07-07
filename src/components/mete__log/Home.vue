@@ -163,14 +163,14 @@
             <input type="date" v-model="fine" @input="filtroData" :rules="rules" placeholder="Fine" label="postForm">
           </section>
         </div>
-        <div class="suggerimenti__account">
+        <div class="suggerimenti__account" v-if="this.arrayUtenti.length > 0">
           <h2>Suggerimenti per te</h2>
 
-          <ul >
-            <li v-for="utente in arrayUtenti" :key="utente.id">
-              <a>
+          <ul>
+            <li v-for="index in 3" :key="index">
+              <a style="cursor: pointer;" @click="$router.push({ path: '/profilo:' + this.arrayUtenti[index].id})">
                 <div></div>
-                <h3 @click="$router.push({ path: '/profilo:' + utente.id})">{{utente.username}}</h3><span>Apri</span>
+                <h3>{{this.arrayUtenti[index].username}}</h3><span>Apri</span>
               </a>
             </li>
           </ul>
