@@ -6,9 +6,12 @@
 
         </div>
         <div class="profilo__upper__sez__due">
-          <div v-if="this.arrayUtenti.length > 0">
-            <h1>{{ this.arrayUtenti[0].username }}</h1><span style="margin-left: 3vw;color: #FF5400">Modifica profilo</span>
-            <h3>{{ this.arrayUtenti[0].bio }}</h3>
+          <div v-if="this.arrayUtenti != {}">
+            <h1>{{ this.arrayUtenti.username }}</h1><span style="margin-left: 3vw;color: #FF5400" @click="$router.push({ name: 'modificaProfilo'})">Modifica profilo</span>
+            
+          </div>
+          <div>
+            <h3>{{ this.arrayUtenti.bio }}</h3>
           </div>
           <!--           <div style="display: flex;">
             <div class="ods__mini__card"><a><strong>150</strong> seguiti</a></div>
@@ -243,7 +246,7 @@ export default {
       sezione__centrale: 1,
       commentotxt: "",
       arrayCommenti: [] = [],
-      arrayUtenti: [] = [],
+      arrayUtenti: {} = {},
       arrayPosts: [] = [],
       user: this.$route.params.userId,
       commenti_t: "Commenti",
@@ -264,7 +267,7 @@ export default {
         var route__dot = this.$route.params.userId;
         var route__nodot = route__dot.substring(1);
         if(doc.id == route__nodot){
-          this.arrayUtenti.push({ id: doc.id, ...doc.data() })
+          this.arrayUtenti = { id: doc.id, ...doc.data() }
         }
       });
     },

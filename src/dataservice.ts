@@ -17,6 +17,11 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes  } from 'firebase/storage';
 
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
+
 // TODO: Add SDKs for Firebase products that you want to use
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -196,7 +201,7 @@ export default {
       utente__id: localStorage.getItem("login"),
       post__id: post__id,
       contenuto: contenuto,
-    });
+    })
   },
 
   getCommenti: async function(){
@@ -239,10 +244,10 @@ export default {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
-        localStorage.setItem("login", user.uid);
-        this.isAuthenticated    
-        /* router.push("/"); */
+        const user = userCredential.user
+        localStorage.setItem("login", user.uid)
+        this.isAuthenticated 
+        window.location.reload();
       })
       .catch((error) => {
         alert("Email o password errate");
@@ -252,7 +257,7 @@ export default {
   takeDataPost: async function (route:any){
     var route__dot:string = route;
     var route__nodot:string = route__dot.substring(1);
-    const docRef = doc(db, "Posts/" + route__nodot);
+    const docRef = doc(db, "Posts/" + route__nodot)
 
     const docSnap = await getDoc(docRef);
 

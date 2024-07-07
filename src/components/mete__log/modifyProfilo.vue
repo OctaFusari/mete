@@ -1,16 +1,28 @@
 <template>
+  <div class="container__generale__router ">
     <div>
+        <div class="ods__mini__card">
+            <div>
+                <h2>Upload Profile Image</h2>
+                <input type="file" @change="onFileChange" />
+                <button @click="uploadImage">Upload</button>
+                <div v-if="imageUrl">
+                <h3>Preview:</h3>
+                <img :src="imageUrl" alt="Profile Image" width="100" />
+                </div>
+            </div>
+            <div>
+                <v-form @submit.prevent="updateUtente" v-model="valid">
+                <v-text-field v-model="this.arrayUtenti.username" :rules="rules" label="username"></v-text-field>
+                <v-text-field v-model="this.arrayUtenti.bio" label="bio"></v-text-field>
 
-        <v-form @submit.prevent="updateUtente" v-model="valid">
-                <v-text-field v-model="username" :rules="rules" label="username"></v-text-field>
-                <v-text-field v-model="bio" :rules="rules" label="bio"></v-text-field>
-                <v-text-field v-model="email" :rules="rules" label="Email"></v-text-field>
-                <v-text-field v-model="userName" :rules="rules" label="Username"></v-text-field>
-                <v-text-field v-model="email" :rules="rules" label="Email"></v-text-field>
-
-                <v-btn class="mt-2" type="submit" block>Registrati</v-btn>
+                <button class="buttonheavy" type="submit" block>Salva modifiche</button>
             </v-form>
+            </div>
+        </div>
+        <button class="buttonlight__little" @click="logOut()">Logout</button>
     </div>
+  </div>
 </template>
 
 <script>
@@ -43,31 +55,71 @@ export default {
             idutente: "",
             profile_picture_url: "",
             username: "",
-            arrayUtenti: [] = []
+            arrayUtenti: {} = {},
+            image: null,
+            imageUrl: null,
         };
     },
     methods: {
         takeUsers: async function () {
+            console.log(this.$route.params.userId)
             const querySnapshot = await getDocs(collection(DataService.dbEx(), "utenti"));
             querySnapshot.forEach((doc) => {
                 var route__dot = this.$route.params.userId;
                 var route__nodot = route__dot.substring(1);
                 if (doc.id == route__nodot) {
-                    this.arrayUtenti.push({ id: doc.id, ...doc.data() })
+                    this.arrayUtenti = { id: doc.id, ...doc.data() }
                 }
             }); 
         },
         updateUtente: function () {
+            console.log(this.arrayUtenti.profile_picture_url)
             let user = localStorage.getItem("login")
-            setDoc(doc(db, "utenti", user), {
-                bio: this.arrayUtenti[0].bio,
-                email:this.arrayUtenti[0].email,
-                idutente:this.arrayUtenti[0].idutente,
-                profile_picture_url: this.arrayUtenti[0].profile_picture_url,
-                username:this.arrayUtenti[0].username,
+            setDoc(doc(DataService.dbEx(), "utenti", user), {
+                bio: this.arrayUtenti.bio,
+                email:this.arrayUtenti.email,
+                idutente:this.arrayUtenti.idutente,
+                profile_picture_url: this.arrayUtenti.profile_picture_url,
+                username:this.arrayUtenti.username,
+            });
+        },
+
+        logOut: function (){
+            dataservice.logout()
+            window.location.reload();
+        },
+        
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.image = file;
+      this.imageUrl = URL.createObjectURL(file);
+    },
+    async uploadImage() {
+      if (!this.image) {
+        alert('Please select an image first.');
+        return;
+      }
+
+      const storageRef = storage.ref();
+      const profileImageRef = storageRef.child(`profile_images/${localStorage.getItem("login")}`);
+
+      try {
+        await profileImageRef.put(this.image);
+        const imageUrl = await profileImageRef.getDownloadURL();
+        await             setDoc(doc(DataService.dbEx(), "utenti", user), {
+                bio: this.arrayUtenti.bio,
+                email:this.arrayUtenti.email,
+                idutente:this.arrayUtenti.idutente,
+                profile_picture_url: imageUrl,
+                username:this.arrayUtenti.username,
             });
 
-        }
+        alert('Profile image uploaded successfully!');
+      } catch (error) {
+        console.error('Error uploading image:', error);
+        alert('Error uploading image. Please try again.');
+      }
+    },
     },
         mounted() {
             this.takeUsers()

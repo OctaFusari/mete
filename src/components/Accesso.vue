@@ -109,6 +109,10 @@
 
 <script>
 import DataService from "../dataservice.ts";
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 export default {
     data() {
@@ -137,11 +141,10 @@ export default {
         },
         submit__accesso: function () {
             if (this.valid) {
-                DataService.login(this.email, this.password);
-                
+                DataService.login(this.email, this.password)
             }
-        }
+        },
 
-    },
+    }
 };
 </script>
