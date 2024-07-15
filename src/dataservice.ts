@@ -17,10 +17,6 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes  } from 'firebase/storage';
 
-import { useRouter, useRoute } from 'vue-router'
-
-const router = useRouter()
-const route = useRoute()
 
 // TODO: Add SDKs for Firebase products that you want to use
 
@@ -124,10 +120,7 @@ const searchFlights = async (origin: any, destination: any, departureDate: any) 
   return response.data.data;
 };
 
-let selectedFile: File | null = null;
-let imageUrl: string | null = null;
 export default {
-
   dbEx: function(){
     return db
   },
@@ -151,21 +144,6 @@ export default {
   },
   isAuthenticated: function () {
     return Boolean(localStorage.getItem("login"));
-  },
-
-  onFileSelected: function (event: Event) {
-    const inputElement: any = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files.length > 0) {
-      selectedFile = inputElement.files[0];
-    }
-
-    if (inputElement.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        imageUrl = e.target.result;
-      };
-      reader.readAsDataURL(inputElement.files[0]);
-    }
   },
   createPosts: async function (titolo: any, luogo: any, descrizione: any, alloggio: any, inizio: any, fine: any, imageFile: any) {
 

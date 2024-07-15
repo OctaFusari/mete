@@ -19,7 +19,6 @@ declare module 'vue' {
     Profilo: typeof import('./src/components/mete__log/Profilo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Test: typeof import('./src/components/mete__log/test.vue')['default']
     Voli: typeof import('./src/components/mete__log/Voli.vue')['default']
   }
 }
